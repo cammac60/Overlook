@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>Overlook Hotel</title>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
+    <main id="splash-page">
+      <div id="splash-background">
+        <h1>Welcome to Overlook</h1>
+        <section id="sign-in">
+          <h6>Please sign in to continue:</h6>
+          <form>
+            <label for="username">Enter your username</label>
+            <input id="username"type="text" maxlength="32">
+            <label for="password">Enter your password</label>
+            <input id="password" type="password" maxlength="32">
+            <button id="splash-submit" type="button" name="submit">Submit</button>
+          </form>
+        </section>
+      </div>
+      
+    </main>
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+
 
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
