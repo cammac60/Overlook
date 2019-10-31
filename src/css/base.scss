@@ -7,6 +7,7 @@ body {
 }
 
 #splash-page {
+  display: none;
   text-align: center;
   #splash-background {
     background-image: url('../images/timberline.jpg');
@@ -102,6 +103,32 @@ body {
           height: 50px;
         }
       }
+    }
+  }
+}
+
+#manager-page-header {
+  color: $primary-text;
+  background-color: $secondary-accent;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  vertical-align: center;
+  width: 100%;
+  h1 {
+    font-family: $brand-font;
+    font-size: 3rem;
+    padding-left: 20px;
+    padding-top: 10px;
+    margin: 0;
+  }
+  detail {
+    font-family: $main-font;
+    font-size: 1.4rem;
+    padding-right: 30px;
+    padding-top: 20px;
+    span {
+      display: block;
     }
   }
 }
