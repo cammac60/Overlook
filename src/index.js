@@ -10,9 +10,7 @@ import './images/facebook.svg';
 import './images/instagram.svg';
 import './images/linkedin.svg';
 import './images/twitter.svg';
-// An example of how you tell webpack to use an
 
-console.log('This is the JavaScript entry file - your code begins here.');
 
 $('#splash-submit').on('click', () => {
   if (!$('#username').val()) {
@@ -31,23 +29,20 @@ $('#splash-form').on('keyup', () => {
     $('#username').css('border', 'none');
   } if (event.target.id === 'password') {
       $('#password').css('border', 'none');
-    } if ($('splash-form-error').text() === 'You are missing a required field' && $('#password').val() && $('#username').val()) {
-      $('splash-form-error').text() === '';
-    }
+    } if ($('#password').val() && $('#username').val()) {
+        hideSignInError();
+      }
 });
 
 let validateSignIn = () => {
   if ($('#password').val() !== 'overlook2019') {
-    console.log('pw');
     displaySignInError();
     return;
   } if ($('#username').val() !== 'manager') {
-      console.log('name');
       displaySignInError();
       return;
     }  else {
         hideSignInError();
-        
       }
 }
 
