@@ -107,28 +107,52 @@ body {
   }
 }
 
-#manager-page-header {
-  color: $primary-text;
-  background-color: $secondary-accent;
-  display: flex;
-  height: 100px;
-  justify-content: space-between;
-  vertical-align: center;
-  width: 100%;
-  h1 {
-    font-family: $brand-font;
-    font-size: 3rem;
-    padding-left: 20px;
-    padding-top: 10px;
-    margin: 0;
+#manager-page {
+  background-image: url('../images/hotel-front.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  #manager-page-header {
+    color: $primary-text;
+    background-color: $secondary-accent;
+    border-bottom: 4px solid $primary-accent;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    vertical-align: center;
+    width: 100%;
+    h1 {
+      font-family: $brand-font;
+      font-size: 3rem;
+      padding-left: 20px;
+      padding-top: 10px;
+      margin: 0;
+    }
+    detail {
+      font-family: $main-font;
+      font-size: 1.4rem;
+      padding-right: 30px;
+      padding-top: 20px;
+      span {
+        display: block;
+      }
+    }
   }
-  detail {
+
+  .manager-container {
+    background-color: $secondary-background-opaque;
+    border: 2px solid $primary-accent;
+    color: $primary-text;
     font-family: $main-font;
-    font-size: 1.4rem;
-    padding-right: 30px;
-    padding-top: 20px;
-    span {
-      display: block;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    width: 80%;
+    h2 {
+      font-size: 2rem;
+      margin-top: 0;
+      padding: 10px;
     }
   }
 }
