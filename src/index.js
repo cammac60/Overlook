@@ -43,6 +43,7 @@ let validateSignIn = () => {
       return;
     }  else {
         hideSignInError();
+        startGame();
       }
 }
 
@@ -56,4 +57,8 @@ let hideSignInError = () => {
   $('#splash-form-error').text('');
   $('#password').css('border', 'none');
   $('#username').css('border', 'none');
+}
+
+let startGame = () => {
+
 }
