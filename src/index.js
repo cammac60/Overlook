@@ -21,10 +21,8 @@ $('#splash-submit').on('click', () => {
   } if (!$('#password').val()) {
       $('#splash-form-error').text('You are missing a required field');
       $('#password').css('border', '1px solid red');
-    } if ($('#password').val() !== 'overlook2019' && $('#password').val()) {
-        $('#splash-form-error').text('Some of the entered information was incorrect');
-        $('#password').css('border', '1px solid red');
-        $('#username').css('border', '1px solid red');
+    } if ($('#password').val() && $('#username').val()) {
+        validateSignIn();
       }
 });
 
@@ -37,3 +35,30 @@ $('#splash-form').on('keyup', () => {
       $('splash-form-error').text() === '';
     }
 });
+
+let validateSignIn = () => {
+  if ($('#password').val() !== 'overlook2019') {
+    console.log('pw');
+    displaySignInError();
+    return;
+  } if ($('#username').val() !== 'manager') {
+      console.log('name');
+      displaySignInError();
+      return;
+    }  else {
+        hideSignInError();
+        
+      }
+}
+
+let displaySignInError = () => {
+  $('#splash-form-error').text('Some of the entered information was incorrect');
+  $('#password').css('border', '1px solid red');
+  $('#username').css('border', '1px solid red');
+}
+
+let hideSignInError = () => {
+  $('#splash-form-error').text('');
+  $('#password').css('border', 'none');
+  $('#username').css('border', 'none');
+}
