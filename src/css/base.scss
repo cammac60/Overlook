@@ -132,7 +132,7 @@ body {
       font-family: $main-font;
       font-size: 1.4rem;
       padding-right: 30px;
-      padding-top: 20px;
+      padding-top: 10px;
       span {
         display: block;
       }
@@ -150,9 +150,31 @@ body {
     margin-top: 3%;
     width: 80%;
     h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-top: 0;
       padding: 10px;
+      padding-left: 20px;
+    }
+    form {
+      border: 2px solid $primary-accent;
+      border-radius: 2px;
+      color: $primary-text;
+      height: 30%;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: auto;
+      width: 20%;
+      label {
+        display: block;
+        font-size: 1.2rem;
+        padding-left: 20px;
+        padding-top: 20px;
+      }
+      input {
+        height: 20px;
+        margin-left: 20px;
+        width: 60%;
+      }
     }
   }
 }
