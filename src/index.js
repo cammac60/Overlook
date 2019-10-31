@@ -26,4 +26,14 @@ $('#splash-submit').on('click', () => {
         $('#password').css('border', '1px solid red');
         $('#username').css('border', '1px solid red');
       }
-})
+});
+
+$('#splash-form').on('keyup', () => {
+  if (event.target.id === 'username') {
+    $('#username').css('border', 'none');
+  } if (event.target.id === 'password') {
+      $('#password').css('border', 'none');
+    } if ($('splash-form-error').text() === 'You are missing a required field' && $('#password').val() && $('#username').val()) {
+      $('splash-form-error').text() === '';
+    }
+});
