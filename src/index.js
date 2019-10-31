@@ -12,5 +12,18 @@ import './images/linkedin.svg';
 import './images/twitter.svg';
 // An example of how you tell webpack to use an
 
-
 console.log('This is the JavaScript entry file - your code begins here.');
+
+$('#splash-submit').on('click', () => {
+  if (!$('#username').val()) {
+    $('#splash-form-error').text('You are missing a required field');
+    $('#username').css('border', '1px solid red');
+  } if (!$('#password').val()) {
+      $('#splash-form-error').text('You are missing a required field');
+      $('#password').css('border', '1px solid red');
+    } if ($('#password').val() !== 'overlook2019' && $('#password').val()) {
+        $('#splash-form-error').text('Some of the entered information was incorrect');
+        $('#password').css('border', '1px solid red');
+        $('#username').css('border', '1px solid red');
+      }
+})

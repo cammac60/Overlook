@@ -11,10 +11,11 @@
           <h6>Please sign in to continue:</h6>
           <form>
             <label for="username">Enter your username</label>
-            <input class= "splash-input" id="username" type="text" maxlength="32">
+            <input required="true" class= "splash-input" id="username" type="text" maxlength="32">
             <label for="password">Enter your password</label>
-            <input class= "splash-input" id="password" type="password" maxlength="32">
+            <input required="true" class= "splash-input" id="password" type="password" maxlength="32">
             <button id="splash-submit" type="button" name="submit">Submit</button>
+            <p id="splash-form-error"></p>
           </form>
         </section>
       </div>
