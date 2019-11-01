@@ -10,7 +10,24 @@ import './images/facebook.svg';
 import './images/instagram.svg';
 import './images/linkedin.svg';
 import './images/twitter.svg';
+import Hotel from './Hotel.js';
+import User from './Users.js';
+import Room from './Rooms.js';
 
+let user, rooms;
+let validIds = /[1-9]{1}-([0-4]{1}[0-9]{1}|50)/gi;
+
+let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(json => json.rooms);
+let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(json => json.users);
+let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()).then(json => json.bookings);
+
+Promise.all([roomData, userData, bookingData])
+  .then(data => {
+    roomData = data[0];
+    userData = data[1];
+    bookingData = data[2];
+  })
+  .catch(error => console.log(error))
 
 $('#splash-submit').on('click', () => {
   if (!$('#username').val()) {
@@ -38,10 +55,10 @@ let validateSignIn = () => {
   if ($('#password').val() !== 'overlook2019') {
     displaySignInError();
     return;
-  } if ($('#username').val() !== 'manager') {
+  } if ($('#username').val() !== 'manager' && $('#username').val() !== 'customer') {
       displaySignInError();
       return;
-    }  else {
+    } else {
         hideSignInError();
         startGame();
       }
@@ -60,5 +77,11 @@ let hideSignInError = () => {
 }
 
 let startGame = () => {
-
+  $('#splash-page').hide();
+  if ($('#username').val() === 'manager') {
+    $('#manager-page').show();
+    let user = new User(bookingData, 51, true);
+  } if ($('#username').val() === 'customer') {
+      $('#customer-page').show();
+    }
 }

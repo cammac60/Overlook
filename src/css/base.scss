@@ -7,7 +7,7 @@ body {
 }
 
 #splash-page {
-  display: none;
+  // display: none;
   text-align: center;
   #splash-background {
     background-image: url('../images/timberline.jpg');
@@ -116,6 +116,7 @@ body {
   background-image: url('../images/hotel-front.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  display: none;
   height: 100vh;
   #manager-page-header {
     color: $primary-text;
@@ -182,4 +183,9 @@ body {
       }
     }
   }
+}
+
+#customer-page {
+  background-color: white;
+  display: none;
 }
