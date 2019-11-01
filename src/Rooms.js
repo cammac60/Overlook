@@ -1,8 +1,9 @@
 const Hotel = require('./Hotel.js');
 
 class Room extends Hotel {
-  constructor(roomNum, data) {
-    super(roomNum, data)
+  constructor(data) {
+    super(data)
+    this.data = data;
   }
 }
 
