@@ -1,6 +1,5 @@
 class Hotel {
-  constructor(roomNum, data) {
-    this.roomNum = roomNum;
+  constructor(data) {
     this.data = data;
   }
   filterData(value, key) {
