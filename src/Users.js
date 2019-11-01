@@ -12,9 +12,8 @@ class User extends Hotel {
   grabName(data) {
     if (this.manager) {
       return 'Stuart Ullman';
-    } else {
-        let filteredNames = data.find(user => user.id === this.id);
-        return filteredNames.name;
+    } else {;
+        return data.find(user => user.id === this.id).name;
       }
   }
   grabBookings(data) {
