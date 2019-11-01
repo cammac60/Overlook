@@ -116,7 +116,7 @@ body {
   background-image: url('../images/hotel-front.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  // display: none;
+  display: none;
   height: 100vh;
   #manager-page-header {
     color: $primary-text;
@@ -207,6 +207,116 @@ body {
 }
 
 #customer-page {
-  background-color: white;
-  display: none;
+  background-attachment: fixed;
+  background-image: url('../images/timberline-hood.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  // display: none;
+  height: 100vh;
+  overflow-x: scroll;
+  #customer-page-header {
+    color: $primary-text;
+    background-color: $primary-background;
+    border-bottom: 4px solid $primary-accent;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    vertical-align: center;
+    width: 100%;
+    h1 {
+      font-family: $brand-font;
+      font-size: 3rem;
+      padding-left: 20px;
+      padding-top: 10px;
+      margin: 0;
+    }
+    detail {
+      font-family: $main-font;
+      font-size: 1.4rem;
+      padding-right: 30px;
+      padding-top: 10px;
+      span {
+        display: block;
+      }
+    }
+  }
+  .customer-container-2 {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid $primary-accent;
+    color: $primary-text;
+    font-family: $main-font;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+    width: 80%;
+    h2 {
+      font-size: 2.2rem;
+      margin: 0;
+      padding: 10px;
+      padding-left: 20px;
+      width: 100%;
+    }
+    div {
+      height: 70%;
+      #spend-container {
+        height: 15%;
+        h3 {
+          font-size: 2rem;
+          margin: 0;
+          margin-top: 2%;
+        }
+      }
+      .data-container {
+        background-color: $secondary-background;
+        border: 2px solid $primary-accent;
+        height: 100%;
+        margin-bottom: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 90%;
+        h3 {
+          font-size: 3rem;
+          margin-bottom: 5%;
+        }
+        label {
+          display: block;
+          font-size: 1.8rem;
+          text-decoration: underline;
+        }
+        select {
+          background-color: $primary-accent;
+          border: 2px solid $secondary-accent;
+          cursor: pointer;
+          font-family: $main-font;
+          font-size: 1.2rem;
+          height: 30px;
+          margin-top: 5%;
+          outline: none;
+          width: 20%;
+        }
+        table {
+          border: 1px solid $primary-accent;
+          border-collapse: collapse;
+          font-size: 1.4rem;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 5%;
+          width: 75%;
+          th {
+            background-color: $secondary-accent;
+            border: 1px solid $primary-accent;
+            padding: 5px;
+            text-align: center;
+          }
+          td {
+            border: 1px solid $primary-accent;
+          }
+        }
+      }
+    }
+  }
 }
