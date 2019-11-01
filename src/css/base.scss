@@ -7,7 +7,6 @@ body {
 }
 
 #splash-page {
-  display: none;
   text-align: center;
   #splash-background {
     background-image: url('../images/timberline.jpg');
@@ -211,7 +210,7 @@ body {
   background-image: url('../images/timberline-hood.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  // display: none;
+  display: none;
   height: 100vh;
   overflow-x: scroll;
   #customer-page-header {
