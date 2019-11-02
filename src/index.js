@@ -79,11 +79,12 @@ let hideSignInError = () => {
 let startGame = (name) => {
   $('#splash-page').hide();
   if (name === 'manager') {
-    $('#manager-page').show();
     user = new User(bookingData, 51, true);
+    displayManagerStats();
+    $('#manager-page').show();
+    console.log(user);
   } else {
       user = new User(bookingData, fetchID(name));
-      console.log(user);
       $('#customer-page').show();
     }
 }
@@ -106,4 +107,8 @@ let fetchID = (name) => {
     }
   })
   return id;
+}
+
+let displayManagerStats = () {
+  $('#open-rooms').text(findOpenRooms());
 }
