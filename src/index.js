@@ -107,9 +107,12 @@ let displayManagerStats = () => {
 }
 
 let displayTotalVacancy = () => {
-  let bookingsToday = bookingData.filter(booking => booking.date === getCurrentDate());
-  let openRooms = manager.findOpenRooms(roomData, bookingsToday).length;
-  $('#open-rooms').text(openRooms);
+  let bookingsToday = bookingData.filter(booking => {
+    return booking.date === getCurrentDate();
+  }).length;
+  console.log(25 - bookingsToday);
+  let openRooms = 25 - bookingsToday;
+  $('#open-rooms').text(`${openRooms}`);
   return openRooms;
 }
 
@@ -120,17 +123,18 @@ let displayRevenueToday = () => {
 }
 
 let displayPercentFull = () => {
-  return roomData.lenth / displayTotalVacancy();
+  let percent = Object.keys(roomData).length / displayTotalVacancy();
+  $('#percent-rooms-occupied').text(`${percent}%`);
 }
 
 let displayCustomerStats = () => {
-  displayCustomerName();
-  // displayCustomerSpend();
+  $('#custom-greeting').text(customer.name);
+  displayCustomerSpend();
   // displayCustomerBookings();
 }
 
-let displayCustomerName = () => {
-  $('#custom-greeting').text(customer.name);
+let displayCustomerSpend = () => {
+  $('#amount-spent').text(`$${customer.sumSpent(roomData, customer.data)}`);
 }
 
 let getCurrentDate = () => {
