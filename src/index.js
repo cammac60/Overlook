@@ -10,11 +10,11 @@ import './images/facebook.svg';
 import './images/instagram.svg';
 import './images/linkedin.svg';
 import './images/twitter.svg';
-import Hotel from './Hotel.js';
+import Manager from './Manager.js';
 import User from './Users.js';
-import Room from './Rooms.js';
+import Customer from './Customer.js';
 
-let user, rooms;
+let customer, manager;
 
 let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(json => json.rooms);
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(json => json.users);
@@ -79,12 +79,11 @@ let hideSignInError = () => {
 let startGame = (name) => {
   $('#splash-page').hide();
   if (name === 'manager') {
-    user = new User(bookingData, 51, true);
+    manager = new Manager();
     displayManagerStats();
     $('#manager-page').show();
-    console.log(user);
   } else {
-      user = new User(bookingData, fetchID(name));
+      customer = new Customer(bookingData, name);
       $('#customer-page').show();
     }
 }
@@ -97,16 +96,6 @@ let validateCustomer = (inputName) => {
     }
   });
   return bool;
-}
-
-let fetchID = (name) => {
-  let id;
-  userData.forEach(user => {
-    if (name === `customer${user.id}`) {
-      id = user.id;
-    }
-  })
-  return id;
 }
 
 let displayManagerStats = () {

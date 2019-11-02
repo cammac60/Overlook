@@ -4,9 +4,9 @@ const bookingData = require('../data/booking-data.js');
 const User = require('./Users.js');
 
 class Customer extends User {
-  constructor(data, id) {
+  constructor(data, name) {
     super();
-    this.id = id;
+    this.id = this.fetchID(name);
     this.name = this.grabName().name;
     this.data = this.grabBookings(data, this.id);
   }
@@ -18,6 +18,15 @@ class Customer extends User {
   }
   grabBookings(data) {
     return data.filter(booking => booking.userID === this.id);
+  }
+  fetchID(name) {
+    let id;
+    userData.forEach(user => {
+      if (name === `customer${user.id}`) {
+        id = user.id;
+      }
+    })
+    return id;
   }
 }
 
