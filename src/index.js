@@ -98,6 +98,38 @@ let validateCustomer = (inputName) => {
   return bool;
 }
 
-let displayManagerStats = () {
-  $('#open-rooms').text(findOpenRooms());
+let displayManagerStats = () => {
+  displayTotalVacancy();
+  displayRevenueToday();
+  // displayPercentFull();
+}
+
+let displayTotalVacancy = () => {
+  let bookingsToday = bookingData.filter(booking => booking.date === getCurrentDate());
+  let openRooms = manager.findOpenRooms(roomData, bookingsToday).length;
+  $('#open-rooms').text(openRooms);
+}
+
+let displayRevenueToday = () => {
+  let bookingsToday = bookingData.filter(booking => booking.date === getCurrentDate());
+  let revenue = manager.sumSpent(roomData, bookingsToday);
+  $('#revenue-today').text(`$${revenue}`)
+}
+
+let getCurrentDate = () => {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+
+  today = `${yyyy}/${mm}/${dd}`;
+  return today;
 }

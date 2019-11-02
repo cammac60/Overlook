@@ -6,13 +6,17 @@ class User {
   constructor(data) {
   }
   sumSpent(rooms, bookings) {
-    let amount = bookings.reduce((acc, booking) => {
-      acc += rooms.find(room => {
-      return room.number === booking.roomNumber;
-      }).costPerNight;
-      return acc;
+    let bookedRooms = [];
+    bookings.forEach(booking => {
+      bookedRooms.push(rooms.find(room => {
+        return room.number === booking.roomNumber;
+      }));
+    });
+    let revenue = bookedRooms.reduce((acc, room) => {
+      acc += room.costPerNight;
+      return acc
     }, 0);
-    return Math.round(amount * 100) / 100;
+    return Math.round(revenue * 100) / 100;
   }
   findOpenRooms(rooms, bookings) {
     let bookingNums = bookings.map(booking => booking.roomNumber);
