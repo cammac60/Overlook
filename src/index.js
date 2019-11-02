@@ -101,19 +101,24 @@ let validateCustomer = (inputName) => {
 let displayManagerStats = () => {
   displayTotalVacancy();
   displayRevenueToday();
-  // displayPercentFull();
+  displayPercentFull();
 }
 
 let displayTotalVacancy = () => {
   let bookingsToday = bookingData.filter(booking => booking.date === getCurrentDate());
   let openRooms = manager.findOpenRooms(roomData, bookingsToday).length;
   $('#open-rooms').text(openRooms);
+  return openRooms;
 }
 
 let displayRevenueToday = () => {
   let bookingsToday = bookingData.filter(booking => booking.date === getCurrentDate());
   let revenue = manager.sumSpent(roomData, bookingsToday);
   $('#revenue-today').text(`$${revenue}`)
+}
+
+let displayPercentFull = () => {
+  return roomData.lenth / displayTotalVacancy();
 }
 
 let getCurrentDate = () => {
