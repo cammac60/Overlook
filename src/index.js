@@ -77,6 +77,7 @@ let hideSignInError = () => {
 }
 
 let startGame = (name) => {
+  $('.current-date').text(getCurrentDate());
   $('#splash-page').hide();
   if (name === 'manager') {
     manager = new Manager();
@@ -84,6 +85,7 @@ let startGame = (name) => {
     $('#manager-page').show();
   } else {
       customer = new Customer(bookingData, name);
+      displayCustomerStats();
       $('#customer-page').show();
     }
 }
@@ -119,6 +121,16 @@ let displayRevenueToday = () => {
 
 let displayPercentFull = () => {
   return roomData.lenth / displayTotalVacancy();
+}
+
+let displayCustomerStats = () => {
+  displayCustomerName();
+  // displayCustomerSpend();
+  // displayCustomerBookings();
+}
+
+let displayCustomerName = () => {
+  $('#custom-greeting').text(customer.name);
 }
 
 let getCurrentDate = () => {
