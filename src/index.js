@@ -50,6 +50,7 @@ $('#splash-form').on('keyup', () => {
       }
 });
 
+
 let validateSignIn = () => {
   let name = $('#username').val();
   if ($('#password').val() !== 'overlook2019') {
@@ -130,8 +131,7 @@ let displayPercentFull = () => {
 let displayCustomerStats = () => {
   $('#custom-greeting').text(customer.name);
   displayCustomerSpend();
-  console.log(customer.data);
-  // displayCustomerBookings();
+  displayCustomerBookings();
 }
 
 let displayCustomerSpend = () => {
@@ -143,15 +143,60 @@ let getCurrentDate = () => {
   let dd = today.getDate();
   let mm = today.getMonth() + 1;
   let yyyy = today.getFullYear();
-
   if (dd < 10) {
     dd = '0' + dd;
-  }
-
-  if (mm < 10) {
-    mm = '0' + mm;
-  }
-
+  } if (mm < 10) {
+      mm = '0' + mm;
+    }
   today = `${yyyy}/${mm}/${dd}`;
   return today;
 }
+
+let displayCustomerBookings = (timeframe) => {
+  let filteredBookings;
+  if (!timeframe) {
+    filteredBookings = customer.data.filter(data => data.date < getCurrentDate());
+  } if (timeframe === 'future') {
+    filteredBookings = customer.data.filter(data => data.date > getCurrentDate());
+  } if (timeframe === 'present') {
+    filteredBookings = customer.data.filter(data => data.date === getCurrentDate());
+  }
+  updateBookingsTable(filteredBookings);
+}
+
+let updateBookingsTable = (bookings) => {
+  if (bookings) {
+    bookings.forEach(booking => {
+      $('#bookings-table').append(`<tr>
+        <td>${booking.date}</td>
+        <td>${booking.roomNumber}</td>
+        <td>${booking.id}</td>
+      </tr>`)
+    });
+  } else {
+      $('#bookings-table').append(`<tr>
+        <caption>No Bookings for this category</caption>
+        </tr>`);
+  }
+}
+
+$('#booking-selector').on('change', () => {
+  let dropdown = $('#booking-selector');
+  let index = dropdown[0].selectedIndex;
+  $('#bookings-table').html(`<tr>
+    <th>Date</th>
+    <th>Room #</th>
+    <th>Booking ID</th>
+    </tr>`);
+  let filteredBookings;
+  if (index === 0) {
+    filteredBookings = customer.data.filter(data => data.date < getCurrentDate());
+    updateBookingsTable(filteredBookings);
+  } if (index === 1) {
+      filteredBookings = customer.data.filter(data => data.date === getCurrentDate());
+      updateBookingsTable(filteredBookings);
+    } if (index === 2) {
+        filteredBookings = customer.data.filter(data => data.date > getCurrentDate());
+        updateBookingsTable(filteredBookings);
+      }
+});

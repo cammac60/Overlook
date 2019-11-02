@@ -246,7 +246,6 @@ body {
     border: 2px solid $primary-accent;
     color: $primary-text;
     font-family: $main-font;
-    height: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15%;
@@ -259,7 +258,6 @@ body {
       width: 100%;
     }
     div {
-      height: 70%;
       #spend-container {
         height: 15%;
         h3 {
@@ -271,8 +269,7 @@ body {
       .data-container {
         background-color: $secondary-background;
         border: 2px solid $primary-accent;
-        height: 100%;
-        margin-bottom: 5%;
+        margin-bottom: 10%;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
