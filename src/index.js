@@ -80,7 +80,7 @@ let startGame = () => {
   if ($('#username').val() === 'manager') {
     $('#manager-page').show();
     let user = new User(bookingData, 51, true);
-  } if ($('#username').val() === 'customer') {
+  } else {
       $('#customer-page').show();
     }
 }
