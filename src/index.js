@@ -51,15 +51,16 @@ $('#splash-form').on('keyup', () => {
 });
 
 let validateSignIn = () => {
+  let name = $('#username').val();
   if ($('#password').val() !== 'overlook2019') {
     displaySignInError();
     return;
-  } if ($('#username').val() !== 'manager' && validateCustomer($('#username').val()) === false) {
+  } if (name !== 'manager' && validateCustomer(name) === false) {
       displaySignInError();
       return;
     } else {
         hideSignInError();
-        startGame();
+        startGame(name);
       }
 }
 
@@ -75,12 +76,14 @@ let hideSignInError = () => {
   $('#username').css('border', 'none');
 }
 
-let startGame = () => {
+let startGame = (name) => {
   $('#splash-page').hide();
-  if ($('#username').val() === 'manager') {
+  if (name === 'manager') {
     $('#manager-page').show();
-    let user = new User(bookingData, 51, true);
+    user = new User(bookingData, 51, true);
   } else {
+      user = new User(bookingData, fetchID(name));
+      console.log(user);
       $('#customer-page').show();
     }
 }
@@ -91,6 +94,16 @@ let validateCustomer = (inputName) => {
     if (inputName === `customer${user.id}`) {
       bool = true;
     }
-    return bool;
+  });
+  return bool;
+}
+
+let fetchID = (name) => {
+  let id;
+  userData.forEach(user => {
+    if (name === `customer${user.id}`) {
+      id = user.id;
+    }
   })
+  return id;
 }
