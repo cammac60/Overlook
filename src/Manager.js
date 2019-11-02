@@ -20,6 +20,5 @@ class Manager extends User {
 
 
 
-if (typeof module !== 'undefined') {
+
   module.exports = Manager;
-}

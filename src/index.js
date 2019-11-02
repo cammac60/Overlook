@@ -165,7 +165,8 @@ let displayCustomerBookings = (timeframe) => {
 }
 
 let updateBookingsTable = (bookings) => {
-  if (bookings) {
+  console.log(bookings.length);
+  if (bookings.length !== 0) {
     bookings.forEach(booking => {
       $('#bookings-table').append(`<tr>
         <td>${booking.date}</td>
@@ -173,10 +174,9 @@ let updateBookingsTable = (bookings) => {
         <td>${booking.id}</td>
       </tr>`)
     });
+    $('#booking-error').hide();
   } else {
-      $('#bookings-table').append(`<tr>
-        <caption>No Bookings for this category</caption>
-        </tr>`);
+      $('#booking-error').show();
   }
 }
 

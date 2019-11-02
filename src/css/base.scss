@@ -287,12 +287,20 @@ body {
           background-color: $primary-accent;
           border: 2px solid $secondary-accent;
           cursor: pointer;
+          display: block;
           font-family: $main-font;
           font-size: 1.2rem;
           height: 30px;
+          margin-bottom: 5%;
+          margin-left: auto;
+          margin-right: auto;
           margin-top: 5%;
           outline: none;
           width: 20%;
+        }
+        #booking-error {
+          display: none;
+          font-size: 1.3rem;
         }
         table {
           border: 1px solid $primary-accent;
