@@ -246,7 +246,7 @@ body {
     border: 2px solid $primary-accent;
     color: $primary-text;
     font-family: $main-font;
-    height: 90%;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15%;
@@ -301,6 +301,7 @@ body {
           border: 1px solid $primary-accent;
           border-collapse: collapse;
           font-size: 1.4rem;
+          margin-bottom: 5%;
           margin-left: auto;
           margin-right: auto;
           margin-top: 5%;

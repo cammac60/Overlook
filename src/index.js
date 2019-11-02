@@ -130,6 +130,7 @@ let displayPercentFull = () => {
 let displayCustomerStats = () => {
   $('#custom-greeting').text(customer.name);
   displayCustomerSpend();
+  console.log(customer.data);
   // displayCustomerBookings();
 }
 
