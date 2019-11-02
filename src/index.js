@@ -15,7 +15,6 @@ import User from './Users.js';
 import Room from './Rooms.js';
 
 let user, rooms;
-let validIds = /[1-9]{1}-([0-4]{1}[0-9]{1}|50)/gi;
 
 let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(json => json.rooms);
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(json => json.users);
@@ -55,7 +54,7 @@ let validateSignIn = () => {
   if ($('#password').val() !== 'overlook2019') {
     displaySignInError();
     return;
-  } if ($('#username').val() !== 'manager' && $('#username').val() !== 'customer') {
+  } if ($('#username').val() !== 'manager' && validateCustomer($('#username').val()) === false) {
       displaySignInError();
       return;
     } else {
@@ -84,4 +83,14 @@ let startGame = () => {
   } if ($('#username').val() === 'customer') {
       $('#customer-page').show();
     }
+}
+
+let validateCustomer = (inputName) => {
+  let bool = false;
+  userData.forEach(user => {
+    if (inputName === `customer${user.id}`) {
+      bool = true;
+    }
+    return bool;
+  })
 }
