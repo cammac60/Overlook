@@ -110,7 +110,6 @@ let displayTotalVacancy = () => {
   let bookingsToday = bookingData.filter(booking => {
     return booking.date === getCurrentDate();
   }).length;
-  console.log(25 - bookingsToday);
   let openRooms = 25 - bookingsToday;
   $('#open-rooms').text(`${openRooms}`);
   return openRooms;
@@ -123,7 +122,8 @@ let displayRevenueToday = () => {
 }
 
 let displayPercentFull = () => {
-  let percent = Object.keys(roomData).length / displayTotalVacancy();
+  let diff = Object.keys(roomData).length - displayTotalVacancy();
+  let percent = (diff / Object.keys(roomData).length) * 100;
   $('#percent-rooms-occupied').text(`${percent}%`);
 }
 
