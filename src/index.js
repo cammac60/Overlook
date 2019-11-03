@@ -209,6 +209,7 @@ $('#room-search-submit').on('click', (event) => {
 
 let displayOpenRooms = (data) => {
   if (data.length !== 0) {
+    $('#room-search-error').hide();
     data.forEach(room => {
       $('#room-search-table').append(`<tr>
         <td>${room.number}</td>
@@ -219,6 +220,8 @@ let displayOpenRooms = (data) => {
         <td>${room.costPerNight}</td>
       </tr>`)
     });
+  } else {
+    $('#room-search-error').show();
   }
 }
 
@@ -234,7 +237,7 @@ let populateOpenRooms = () => {
   let selectedDate = `${$('#room-search-year').val()}/${$('#room-search-month').val()}/${$('#room-search-day').val()}`;
   let currentRoomView = customer.filterData(selectedDate, 'date', bookingData);
   let openings = customer.findOpenRooms(roomData, currentRoomView);
-  displayOpenRooms(openings);
+  displayOpenRooms(filterByRoomType(openings));
 }
 
 let resetRoomTable = () => {
@@ -246,4 +249,20 @@ let resetRoomTable = () => {
     <th>Number of Beds</th>
     <th>Cost Per Night</th>
   </tr>`);
+}
+
+let filterByRoomType = (rooms) => {
+  let roomDropdown = $('#room-type-selector');
+  let index = roomDropdown[0].selectedIndex;
+  if (index === 1) {
+      return customer.filterData('residential suite', 'roomType', rooms);
+  } if (index === 2) {
+      return customer.filterData('suite', 'roomType', rooms);
+  } if (index === 3) {
+      return customer.filterData('single room', 'roomType', rooms);
+  } if (index === 4) {
+      return customer.filterData('junior suite', 'roomType', rooms);
+  } else {
+    return rooms;
+  }
 }
