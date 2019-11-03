@@ -10,11 +10,11 @@ import './images/facebook.svg';
 import './images/instagram.svg';
 import './images/linkedin.svg';
 import './images/twitter.svg';
-import Hotel from './Hotel.js';
+import Manager from './Manager.js';
 import User from './Users.js';
-import Room from './Rooms.js';
+import Customer from './Customer.js';
 
-let user, rooms;
+let customer, manager;
 
 let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(json => json.rooms);
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(json => json.users);
@@ -50,16 +50,18 @@ $('#splash-form').on('keyup', () => {
       }
 });
 
+
 let validateSignIn = () => {
+  let name = $('#username').val();
   if ($('#password').val() !== 'overlook2019') {
     displaySignInError();
     return;
-  } if ($('#username').val() !== 'manager' && validateCustomer($('#username').val()) === false) {
+  } if (name !== 'manager' && validateCustomer(name) === false) {
       displaySignInError();
       return;
     } else {
         hideSignInError();
-        startGame();
+        startGame(name);
       }
 }
 
@@ -75,12 +77,16 @@ let hideSignInError = () => {
   $('#username').css('border', 'none');
 }
 
-let startGame = () => {
+let startGame = (name) => {
+  $('.current-date').text(getCurrentDate());
   $('#splash-page').hide();
-  if ($('#username').val() === 'manager') {
+  if (name === 'manager') {
+    manager = new Manager();
+    displayManagerStats();
     $('#manager-page').show();
-    let user = new User(bookingData, 51, true);
-  } if ($('#username').val() === 'customer') {
+  } else {
+      customer = new Customer(bookingData, name);
+      displayCustomerStats();
       $('#customer-page').show();
     }
 }
@@ -91,6 +97,106 @@ let validateCustomer = (inputName) => {
     if (inputName === `customer${user.id}`) {
       bool = true;
     }
-    return bool;
-  })
+  });
+  return bool;
 }
+
+let displayManagerStats = () => {
+  displayTotalVacancy();
+  displayRevenueToday();
+  displayPercentFull();
+}
+
+let displayTotalVacancy = () => {
+  let bookingsToday = bookingData.filter(booking => {
+    return booking.date === getCurrentDate();
+  }).length;
+  let openRooms = 25 - bookingsToday;
+  $('#open-rooms').text(`${openRooms}`);
+  return openRooms;
+}
+
+let displayRevenueToday = () => {
+  let bookingsToday = bookingData.filter(booking => booking.date === getCurrentDate());
+  let revenue = manager.sumSpent(roomData, bookingsToday);
+  $('#revenue-today').text(`$${revenue}`)
+}
+
+let displayPercentFull = () => {
+  let diff = Object.keys(roomData).length - displayTotalVacancy();
+  let percent = (diff / Object.keys(roomData).length) * 100;
+  $('#percent-rooms-occupied').text(`${percent}%`);
+}
+
+let displayCustomerStats = () => {
+  $('#custom-greeting').text(customer.name);
+  displayCustomerSpend();
+  displayCustomerBookings();
+}
+
+let displayCustomerSpend = () => {
+  $('#amount-spent').text(`$${customer.sumSpent(roomData, customer.data)}`);
+}
+
+let getCurrentDate = () => {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = '0' + dd;
+  } if (mm < 10) {
+      mm = '0' + mm;
+    }
+  today = `${yyyy}/${mm}/${dd}`;
+  return today;
+}
+
+let displayCustomerBookings = (timeframe) => {
+  let filteredBookings;
+  if (!timeframe) {
+    filteredBookings = customer.data.filter(data => data.date < getCurrentDate());
+  } if (timeframe === 'future') {
+    filteredBookings = customer.data.filter(data => data.date > getCurrentDate());
+  } if (timeframe === 'present') {
+    filteredBookings = customer.data.filter(data => data.date === getCurrentDate());
+  }
+  updateBookingsTable(filteredBookings);
+}
+
+let updateBookingsTable = (bookings) => {
+  console.log(bookings.length);
+  if (bookings.length !== 0) {
+    bookings.forEach(booking => {
+      $('#bookings-table').append(`<tr>
+        <td>${booking.date}</td>
+        <td>${booking.roomNumber}</td>
+        <td>${booking.id}</td>
+      </tr>`)
+    });
+    $('#booking-error').hide();
+  } else {
+      $('#booking-error').show();
+  }
+}
+
+$('#booking-selector').on('change', () => {
+  let dropdown = $('#booking-selector');
+  let index = dropdown[0].selectedIndex;
+  $('#bookings-table').html(`<tr>
+    <th>Date</th>
+    <th>Room #</th>
+    <th>Booking ID</th>
+    </tr>`);
+  let filteredBookings;
+  if (index === 0) {
+    filteredBookings = customer.data.filter(data => data.date < getCurrentDate());
+    updateBookingsTable(filteredBookings);
+  } if (index === 1) {
+      filteredBookings = customer.data.filter(data => data.date === getCurrentDate());
+      updateBookingsTable(filteredBookings);
+    } if (index === 2) {
+        filteredBookings = customer.data.filter(data => data.date > getCurrentDate());
+        updateBookingsTable(filteredBookings);
+      }
+});

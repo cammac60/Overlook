@@ -35,22 +35,22 @@
         <h1>Overlook Hotel</h1>
         <detail>
           Welcome,<br>Stuart Ullman
-          <span>10/30/2019</span>
+          <span class="current-date"></span>
         </detail>
       </header>
       <section class="manager-container">
         <h2>Daily Breakdown</h2>
         <div>
           <section class="data-container">
-            <h3 id="open-rooms">56</h3>
+            <h3 id="open-rooms"></h3>
             <label for="open-rooms">Rooms availiable</label>
           </section>
           <section class="data-container">
-            <h3 id="revenue-today">$45</h3>
+            <h3 id="revenue-today"></h3>
             <label for="revenue-today">Revenue Today</label>
           </section>
           <section class="data-container">
-            <h3 id="percent-rooms-occupied">55%</h3>
+            <h3 id="percent-rooms-occupied"></h3>
             <label for="percent-rooms-occupied">Rooms Occupied</label>
           </section>
         </div>
@@ -68,78 +68,29 @@
         <h1>Overlook Hotel</h1>
         <detail>
           Welcome,<br>
-          <span id="custom-greeting">Stuart Ullman</span>
-          <span>10/30/2019</span>
+          <span id="custom-greeting"></span>
+          <span class="current-date"></span>
         </detail>
       </header>
       <section class="customer-container-2">
         <h2>Your History</h2>
         <div>
           <section id="spend-container" class="data-container">
-            <h3>Lifetime Spend: <span id="amount-spent">$56</span></h3>
+            <h3>Lifetime Spend: <span id="amount-spent"></span></h3>
           </section>
           <section class="data-container">
             <label for="table">Your Recent Bookings</label>
-            <select name="bookings">
-              <option value="past">Past</option>
-              <option value="present">Present</option>
-              <option value="future">Future</option>
+            <select name="bookings" id="booking-selector">
+              <option id="option-past" value="past">Past</option>
+              <option id="option-present" value="present">Present</option>
+              <option id="option-future" value="future">Future</option>
             </select>
-            <table>
+            <span id="booking-error">No data for selected option</span>
+            <table id="bookings-table">
               <tr>
                 <th>Date</th>
                 <th>Room #</th>
                 <th>Booking ID</th>
-              </tr>
-              <tr>
-                <td id="date-1">10/31/1029</td>
-                <td id="room-1">315</td>
-                <td id="booking-1">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-2">10/31/1029</td>
-                <td id="room-2">315</td>
-                <td id="booking-2">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-3">10/31/1029</td>
-                <td id="room-3">315</td>
-                <td id="booking-3">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-4">10/31/1029</td>
-                <td id="room-4">315</td>
-                <td id="booking-4">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-5">10/31/1029</td>
-                <td id="room-5">315</td>
-                <td id="booking-5">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-6">10/31/1029</td>
-                <td id="room-6">315</td>
-                <td id="booking-6">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-7">10/31/1029</td>
-                <td id="room-7">315</td>
-                <td id="booking-7">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-8">10/31/1029</td>
-                <td id="room-8">315</td>
-                <td id="booking-8">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-9">10/31/1029</td>
-                <td id="room-9">315</td>
-                <td id="booking-9">45346346</td>
-              </tr>
-              <tr>
-                <td id="date-10">10/31/1029</td>
-                <td id="room-10">315</td>
-                <td id="booking-10">45346346</td>
               </tr>
             </table>
           </section>
