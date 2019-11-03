@@ -260,11 +260,12 @@ body {
     }
     div {
       #spend-container {
-        height: 15%;
+        height: 20%;
+        margin-bottom: 5%;
         h3 {
           font-size: 2rem;
           margin: 0;
-          margin-top: 2%;
+          padding: 10px;
         }
       }
       .data-container {
@@ -282,6 +283,7 @@ body {
         label {
           display: block;
           font-size: 1.8rem;
+          margin-top: 3%;
           text-decoration: underline;
         }
         select {

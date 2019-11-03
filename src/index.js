@@ -188,15 +188,11 @@ $('#booking-selector').on('change', () => {
     <th>Room #</th>
     <th>Booking ID</th>
     </tr>`);
-  let filteredBookings;
   if (index === 0) {
-    filteredBookings = customer.data.filter(data => data.date < getCurrentDate());
-    updateBookingsTable(filteredBookings);
+    updateBookingsTable(customer.data.filter(data => data.date < getCurrentDate()));
   } if (index === 1) {
-      filteredBookings = customer.data.filter(data => data.date === getCurrentDate());
-      updateBookingsTable(filteredBookings);
+      updateBookingsTable(customer.data.filter(data => data.date === getCurrentDate()));
     } if (index === 2) {
-        filteredBookings = customer.data.filter(data => data.date > getCurrentDate());
-        updateBookingsTable(filteredBookings);
+        updateBookingsTable(customer.data.filter(data => data.date > getCurrentDate()));
       }
 });
