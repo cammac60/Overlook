@@ -165,7 +165,6 @@ let displayCustomerBookings = (timeframe) => {
 }
 
 let updateBookingsTable = (bookings) => {
-  console.log(bookings.length);
   if (bookings.length !== 0) {
     bookings.forEach(booking => {
       $('#bookings-table').append(`<tr>
@@ -196,3 +195,55 @@ $('#booking-selector').on('change', () => {
         updateBookingsTable(customer.data.filter(data => data.date > getCurrentDate()));
       }
 });
+
+$('#room-search-submit').on('click', (event) => {
+  event.preventDefault();
+  resetRoomTable();
+  if (validateRoomSearch()) {
+    $('#room-search-error').hide();
+    populateOpenRooms();
+  } else {
+      $('#room-search-error').show();
+  }
+});
+
+let displayOpenRooms = (data) => {
+  if (data.length !== 0) {
+    data.forEach(room => {
+      $('#room-search-table').append(`<tr>
+        <td>${room.number}</td>
+        <td>${room.roomType}</td>
+        <td>${room.bidet}</td>
+        <td>${room.bedSize}</td>
+        <td>${room.numBeds}</td>
+        <td>${room.costPerNight}</td>
+      </tr>`)
+    });
+  }
+}
+
+let validateRoomSearch = () => {
+  if ($('#room-search-year').val() && $('#room-search-month').val() && $('#room-search-day').val()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+let populateOpenRooms = () => {
+  let selectedDate = `${$('#room-search-year').val()}/${$('#room-search-month').val()}/${$('#room-search-day').val()}`;
+  let currentRoomView = customer.filterData(selectedDate, 'date', bookingData);
+  let openings = customer.findOpenRooms(roomData, currentRoomView);
+  displayOpenRooms(openings);
+}
+
+let resetRoomTable = () => {
+  $('#room-search-table').html(`<tr>
+    <th>Room #</th>
+    <th>Room Type</th>
+    <th>Bidet?</th>
+    <th>Bed Size</th>
+    <th>Number of Beds</th>
+    <th>Cost Per Night</th>
+  </tr>`);
+}

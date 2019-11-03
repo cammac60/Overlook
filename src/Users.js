@@ -19,8 +19,9 @@ class User {
     return Math.round(revenue * 100) / 100;
   }
   findOpenRooms(rooms, bookings) {
-    let bookingNums = bookings.map(booking => booking.roomNumber);
-    return rooms.filter(room => !bookings.includes(room.number));
+    let bookedRooms = bookings.map(booking => booking.roomNumber);
+    return rooms.filter(room =>
+      !bookedRooms.includes(room.number));
   }
 }
 
