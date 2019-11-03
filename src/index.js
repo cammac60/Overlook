@@ -15,6 +15,7 @@ import User from './Users.js';
 import Customer from './Customer.js';
 
 let customer, manager;
+let selectedDate;
 
 let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(json => json.rooms);
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(json => json.users);
@@ -218,7 +219,8 @@ let displayOpenRooms = (data) => {
         <td>${room.bedSize}</td>
         <td>${room.numBeds}</td>
         <td>${room.costPerNight}</td>
-      </tr>`)
+        <td><input class="select-room" type="radio" value="select room" name="select"></td>
+      </tr>`);
     });
   } else {
     $('#room-search-error').show();
@@ -234,7 +236,7 @@ let validateRoomSearch = () => {
 }
 
 let populateOpenRooms = () => {
-  let selectedDate = `${$('#room-search-year').val()}/${$('#room-search-month').val()}/${$('#room-search-day').val()}`;
+  selectedDate = `${$('#room-search-year').val()}/${$('#room-search-month').val()}/${$('#room-search-day').val()}`;
   let currentRoomView = customer.filterData(selectedDate, 'date', bookingData);
   let openings = customer.findOpenRooms(roomData, currentRoomView);
   displayOpenRooms(filterByRoomType(openings));
@@ -248,6 +250,7 @@ let resetRoomTable = () => {
     <th>Bed Size</th>
     <th>Number of Beds</th>
     <th>Cost Per Night</th>
+    <th>Make Booking</th>
   </tr>`);
 }
 
@@ -266,3 +269,14 @@ let filterByRoomType = (rooms) => {
     return rooms;
   }
 }
+
+$('#book-room').on('click', () => {
+  event.preventDefault();
+  let selector = $('input[name=select]:checked');
+  let roomInfo =  selector[0].parentNode.parentNode.childNodes;
+  customer.postBooking(customer.id, selectedDate, roomInfo[1].innerText);
+  resetRoomTable();
+  $('#room-search-year').val('');
+  $('#room-search-month').val('');
+  $('#room-search-day').val('');
+});
