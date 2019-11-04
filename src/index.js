@@ -136,7 +136,8 @@ let displayCustomerStats = () => {
 }
 
 let displayCustomerSpend = () => {
-  let amount = customer.sumSpent(roomData, customer.data);
+  let pastBookings = customer.data.filter(data => data.date < getCurrentDate());
+  let amount = customer.sumSpent(roomData, pastBookings);
   $('#amount-spent').text(`$${amount}`);
 }
 
