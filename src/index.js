@@ -112,7 +112,7 @@ let displayTotalVacancy = () => {
   let bookingsToday = bookingData.filter(booking => {
     return booking.date === getCurrentDate();
   }).length;
-  let openRooms = 25 - bookingsToday;
+  let openRooms = roomData.length - bookingsToday;
   $('#open-rooms').text(`${openRooms}`);
   return openRooms;
 }
@@ -276,17 +276,23 @@ let filterByRoomType = (rooms) => {
 $('#book-room').on('click', () => {
   event.preventDefault();
     let selector = $('input[name=select]:checked');
-    let roomInfo =  selector[0].parentNode.parentNode.childNodes;
-    customer.postBooking(customer.id, selectedDate, roomInfo[1].innerText);
-    resetRoomTable();
-    $('#room-search-year').val('');
-    $('#room-search-month').val('');
-    $('#room-search-day').val('');
-    $('#booking-success').show();
+    if (selector.length) {
+      let roomInfo =  selector[0].parentNode.parentNode.childNodes;
+      customer.postBooking(customer.id, selectedDate, roomInfo[1].innerText);
+      resetRoomTable();
+      $('#room-search-year').val('');
+      $('#room-search-month').val('');
+      $('#room-search-day').val('');
+      $('#booking-fail').hide();
+      $('#booking-success').show();
+    } else {
+        $('#booking-fail').css('display', 'block');
+    }
 });
 
 $('#find-customer').on('click', () => {
   event.preventDefault();
+  resetManagerBookings();
   let nameQuery = $('#user-search-input').val();
   let user = manager.filterData(nameQuery, 'name', userData)[0];
   if (nameQuery && user) {
@@ -296,6 +302,7 @@ $('#find-customer').on('click', () => {
     $('#customer-name').text(nameQuery);
     $('#customer-id').text(user.id);
     $('#customer-search-spend').text(`$${manager.sumSpent(roomData, bookings)}`);
+    updateManagerBookings(bookings);
   } else {
     $('#user-search-input').css('border', '2px solid red');
     $('#customer-search-error').show();
@@ -306,3 +313,29 @@ $('#user-search-input').on('keyup', () => {
   $('#user-search-input').css('border', 'none');
   $('#customer-search-error').hide();
 })
+
+let updateManagerBookings = (bookings) => {
+  bookings.forEach(booking => {
+    $('#manager-booking-table').append(`<tr>
+      <td>${booking.date}</td>
+      <td>${booking.roomNumber}</td>
+      <td>${booking.id}</td>
+      <td><input class="select-booking" type="radio" value="select booking" name="booking-select"></td>
+    <tr>`);
+  });
+}
+
+let resetManagerBookings = () => {
+  $('#manager-booking-table').html(`<tr>
+    <th>Date</th>
+    <th>Room #</th>
+    <th class="booking-id">Booking ID</th>
+    <th>Select</th>
+  <tr>`);
+}
+
+$('#manager-delete-booking').on('click', () => {
+  event.preventDefault();
+  let selector = $('input[name=booking-select]:checked');
+  // console.log(selector[0].parentNode.parentNode);
+});

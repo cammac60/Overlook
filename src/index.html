@@ -76,6 +76,15 @@
             <strong>All Time Spend: </strong><span id="customer-search-spend"></span>
           </span>
         </div>
+        <table id="manager-booking-table">
+          <tr>
+            <th>Date</th>
+            <th>Room #</th>
+            <th>Booking ID</th>
+            <th>Select</th>
+          <tr>
+        </table>
+        <button id="manager-delete-booking" type="submit" value="delete-booking" name="delete">Remove Booking</button>
       </section>
     </main>
     <main id="customer-page">
@@ -169,6 +178,7 @@
                 <th>Select Room</th>
               </tr>
             <table>
+            <span id="booking-fail">You haven't selected a room.</span>
             <button id="book-room" type="submit">Make Booking</button>
           </section>
         </div>
