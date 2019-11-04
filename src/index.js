@@ -296,9 +296,7 @@ $('#find-customer').on('click', () => {
   let nameQuery = $('#user-search-input').val();
   let user = manager.filterData(nameQuery, 'name', userData)[0];
   if (nameQuery && user) {
-    let bookings = bookingData.filter(booking => {
-      return booking.userID === user.id;
-    });
+    let bookings = manager.grabUserInfo(user.id).bookings;
     $('#customer-name').text(nameQuery);
     $('#customer-id').text(user.id);
     $('#customer-search-spend').text(`$${manager.sumSpent(roomData, bookings)}`);
@@ -337,5 +335,8 @@ let resetManagerBookings = () => {
 $('#manager-delete-booking').on('click', () => {
   event.preventDefault();
   let selector = $('input[name=booking-select]:checked');
-  // console.log(selector[0].parentNode.parentNode);
+  if (selector.length) {
+    let bookingID = selector[0].parentNode.parentNode.children[2].innerText;
+    selector[0].parentNode.parentNode.remove();
+  }
 });
