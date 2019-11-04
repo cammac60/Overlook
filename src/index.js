@@ -201,6 +201,7 @@ $('#booking-selector').on('change', () => {
 $('#room-search-submit').on('click', (event) => {
   event.preventDefault();
   resetRoomTable();
+  $('#booking-success').hide();
   if (validateRoomSearch()) {
     $('#room-search-error').hide();
     populateOpenRooms();
@@ -273,11 +274,12 @@ let filterByRoomType = (rooms) => {
 
 $('#book-room').on('click', () => {
   event.preventDefault();
-  let selector = $('input[name=select]:checked');
-  let roomInfo =  selector[0].parentNode.parentNode.childNodes;
-  customer.postBooking(customer.id, selectedDate, roomInfo[1].innerText);
-  resetRoomTable();
-  $('#room-search-year').val('');
-  $('#room-search-month').val('');
-  $('#room-search-day').val('');
+    let selector = $('input[name=select]:checked');
+    let roomInfo =  selector[0].parentNode.parentNode.childNodes;
+    customer.postBooking(customer.id, selectedDate, roomInfo[1].innerText);
+    resetRoomTable();
+    $('#room-search-year').val('');
+    $('#room-search-month').val('');
+    $('#room-search-day').val('');
+    $('#booking-success').show();
 });
