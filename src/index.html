@@ -81,9 +81,9 @@
           <section class="data-container">
             <label for="table">Your Recent Bookings</label>
             <select name="bookings" id="booking-selector">
-              <option id="option-past" value="past">Past</option>
-              <option id="option-present" value="present">Present</option>
-              <option id="option-future" value="future">Future</option>
+              <option value="past">Past</option>
+              <option value="present">Present</option>
+              <option value="future">Future</option>
             </select>
             <span id="booking-error">No data for selected option</span>
             <table id="bookings-table">
@@ -93,6 +93,68 @@
                 <th>Booking ID</th>
               </tr>
             </table>
+          </section>
+        </div>
+      </section>
+      <section id="room-search-wrap" class="customer-container-2">
+        <h2>Book a Room</h2>
+        <div>
+          <section class="data-container">
+            <form id="room-search">
+              <h3>Find a Room</h3>
+              <div id="input-wrapper-lrg">
+                <div>
+                  <input required="true" id="room-search-year" maxlength="4" max="2021" type="number">
+                  <label for="room-search-year">Year</label>
+                </div>
+                <div>
+                  <input required="true" id="room-search-month" maxlength="2" max="12" type="number">
+                  <label for="room-search-month">Month</label>
+                </div>
+                <div>
+                  <input required="true" id="room-search-day" maxlength="2" max="31" type="number">
+                  <label for="room-search-day">Day</label>
+                </div>
+              </div>
+              <select name="room-type" id="room-type-selector">
+                <option value="any-type">
+                  Any Room Type
+                </option>
+                <option value="residential-suite">
+                  Residential Suite
+                </option>
+                <option value="suite">
+                  Suite
+                </option>
+                <option value="single-room">
+                  Single Room
+                </option>
+                <option value="junior-suite">
+                  Junior Suite
+                </option>
+              </select>
+              <button type="search" name="submit" id="room-search-submit">Search</button>
+            </form>
+            <span id="room-search-error">
+              <strong>
+                There are no availiable rooms for the selected date.
+              </strong>
+              <br>
+            We are very sorry for any inconvenience this may cause. Please try selecting another date or room type.
+            </span>
+            <span id="booking-success">Thank you for your booking!</span>
+            <table id="room-search-table">
+              <tr>
+                <th>Room #</th>
+                <th>Room Type</th>
+                <th>Bidet?</th>
+                <th>Bed Size</th>
+                <th>Number of Beds</th>
+                <th>Cost Per Night</th>
+                <th>Select Room</th>
+              </tr>
+            <table>
+            <button id="book-room" type="submit">Make Booking</button>
           </section>
         </div>
       </section>
