@@ -290,8 +290,12 @@ $('#find-customer').on('click', () => {
   let nameQuery = $('#user-search-input').val();
   let user = manager.filterData(nameQuery, 'name', userData)[0];
   if (nameQuery && user) {
+    let bookings = bookingData.filter(booking => {
+      return booking.userID === user.id;
+    });
     $('#customer-name').text(nameQuery);
     $('#customer-id').text(user.id);
+    $('#customer-search-spend').text(`$${manager.sumSpent(roomData, bookings)}`);
   } else {
     $('#user-search-input').css('border', '2px solid red');
     $('#customer-search-error').show();
