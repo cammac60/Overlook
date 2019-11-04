@@ -288,10 +288,11 @@ $('#book-room').on('click', () => {
 $('#find-customer').on('click', () => {
   event.preventDefault();
   let nameQuery = $('#user-search-input').val();
-  let id = manager.filterData(nameQuery, 'name', userData)[0].id;
-  console.log(id);
-  if (nameQuery && id) {
+  let user = manager.filterData(nameQuery, 'name', userData)[0];
+  if (nameQuery && user) {
     $('#customer-name').text(nameQuery);
-    $('#customer-id').text(id);
+    $('#customer-id').text(user.id);
+  } else {
+    $('#customer-search-error').show();
   }
 });
