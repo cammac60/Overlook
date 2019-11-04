@@ -336,7 +336,11 @@ $('#manager-delete-booking').on('click', () => {
   event.preventDefault();
   let selector = $('input[name=booking-select]:checked');
   if (selector.length) {
+    $('#booking-delete-error').hide();
     let bookingID = selector[0].parentNode.parentNode.children[2].innerText;
+    manager.deleteBooking(bookingID);
     selector[0].parentNode.parentNode.remove();
+  } else {
+      $('#booking-delete-error').css('display', 'block');
   }
 });
