@@ -136,7 +136,8 @@ let displayCustomerStats = () => {
 }
 
 let displayCustomerSpend = () => {
-  $('#amount-spent').text(`$${customer.sumSpent(roomData, customer.data)}`);
+  let amount = customer.sumSpent(roomData, customer.data);
+  $('#amount-spent').text(`$${amount}`);
 }
 
 let getCurrentDate = () => {
