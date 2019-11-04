@@ -314,6 +314,11 @@ body {
           margin-right: auto;
           margin-top: 5%;
           width: 75%;
+          tr {
+            &:hover {
+              background-color: $primary-background;
+            }
+          }
           th {
             background-color: $secondary-accent;
             border: 1px solid $primary-accent;
@@ -346,9 +351,11 @@ body {
         text-decoration: none;
       }
       #room-search-year {
+        font-size: 1.2rem;
         width: 90%;
       }
       #room-search-day, #room-search-month {
+        font-size: 1.2rem;
         width: 45%;
       }
     }
