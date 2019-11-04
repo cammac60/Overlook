@@ -284,3 +284,14 @@ $('#book-room').on('click', () => {
     $('#room-search-day').val('');
     $('#booking-success').show();
 });
+
+$('#find-customer').on('click', () => {
+  event.preventDefault();
+  let nameQuery = $('#user-search-input').val();
+  let id = manager.filterData(nameQuery, 'name', userData)[0].id;
+  console.log(id);
+  if (nameQuery && id) {
+    $('#customer-name').text(nameQuery);
+    $('#customer-id').text(id);
+  }
+});

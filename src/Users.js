@@ -40,6 +40,9 @@ class User {
     .then(data => console.log(data))
     .catch(err => console.log(err));
   }
+  filterData(value, key, data) {
+    return data.filter(dataEntry => dataEntry[key] === value);
+  }
 }
 
 

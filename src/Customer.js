@@ -13,9 +13,6 @@ class Customer extends User {
   grabName() {
     return userData.find(user => user.id === this.id);
   }
-  filterData(value, key, data) {
-    return data.filter(dataEntry => dataEntry[key] === value);
-  }
   grabBookings(data) {
     return data.filter(booking => booking.userID === this.id);
   }

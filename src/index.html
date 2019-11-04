@@ -38,7 +38,7 @@
           <span class="current-date"></span>
         </detail>
       </header>
-      <section class="manager-container">
+      <section id="top-container" class="manager-container">
         <h2>Daily Breakdown</h2>
         <div>
           <section class="data-container">
@@ -57,10 +57,24 @@
       </section>
       <section class="manager-container">
         <h2>Customer Search</h2>
-        <form id="magager-search">
+        <form id="manager-search">
           <label for="user-search-input">Customer</label>
           <input maxlength="32" name="username" id="user-search-input">
+          <button type="submit" value="search" id="find-customer">Search</button>
         </form>
+        <div id="customer-info-wrapper">
+          <span class="custo-info">
+            <strong>Name:</strong> <span id="customer-name"></span>
+          </span>
+          <br>
+          <span class="custo-info">
+            <storng>ID:</strong> <span id="customer-id"></span>
+          </span>
+          <br>
+          <span class="custo-info">
+            <strong>All Time Spend: </strong><span id="customer-search-spend"></span>
+          </span>
+        </div>
       </section>
     </main>
     <main id="customer-page">
