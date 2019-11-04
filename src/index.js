@@ -293,6 +293,12 @@ $('#find-customer').on('click', () => {
     $('#customer-name').text(nameQuery);
     $('#customer-id').text(user.id);
   } else {
+    $('#user-search-input').css('border', '2px solid red');
     $('#customer-search-error').show();
   }
 });
+
+$('#user-search-input').on('keyup', () => {
+  $('#user-search-input').css('border', 'none');
+  $('#customer-search-error').hide();
+})
