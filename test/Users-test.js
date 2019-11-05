@@ -9,7 +9,7 @@ const User = require('../src/Users.js');
 
 let user;
 
-describe.only('Users', function() {
+describe('Users', function() {
   beforeEach(() => {
     user = new User();
   });
@@ -33,7 +33,7 @@ describe.only('Users', function() {
   it('Should be able to post a booking', function() {
     let chaiSpy = chai.spy.on(user, 'postBooking', () => {
       return new Promise((resolve) => {
-        resolve({message: "Data has been fetched"});
+        resolve({message: 'Data has been fetched'});
       })
     });
     user.postBooking(1, '2019/11/12', 1);
