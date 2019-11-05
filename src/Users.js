@@ -1,5 +1,5 @@
 class User {
-  constructor(data) {
+  constructor() {
   }
   sumSpent(rooms, bookings) {
     let bookedRooms = [];
