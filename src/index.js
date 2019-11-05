@@ -347,16 +347,56 @@ $('#manager-delete-booking').on('click', () => {
 
 $('#mng-post-booking').on('click', () => {
   event.preventDefault();
-  console.log(validateDates());
+  let enteredDate = `${$('#user-year-mng').val()}/${$('#user-month-mng').val()}/${$('#user-day-mng').val()}`;
+  if (managerPostValidation()) {
+    console.log('posting');
+  } else {
+      console.log('error');
+  }
 });
 
-let validateDates = () => {
+let validateDates = (date) => {
   let bool = true;
-  let enteredDate = `${$('#user-year-mng').val()}/${$('#user-month-mng').val()}/${$('#user-day-mng').val()}`;
   if (!$('#user-year-mng').val() || !$('#user-month-mng').val() || !$('#user-day-mng').val()) {
     bool = false;
-  } if (enteredDate < getCurrentDate()) {
+  } if (date < getCurrentDate()) {
     bool = false;
   }
   return bool;
+}
+
+let validateNewBooking = (date) => {
+  let bookings = manager.filterData(date, 'date', bookingData);
+  let roomNum = $('#room-num-mng').val();
+  if (bookings.some(booking => {
+    return booking.date === date && booking.roomNumber === parseInt(roomNum);
+  })) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+let checkFields = () => {
+  if ($('#user-year-mng').val() < 2019) {
+    return false;
+  } if ($('#user-month-mng').val() > 12 || $('#user-month-mng').val() < 1) {
+      return false;
+  } if ($('#user-day-mng').val() > 31) {
+      return false;
+  } if ($('#room-num-mng').val() > 25 || $('#room-num-mng').val() < 1 ) {
+      return false;
+  } if ($('#user-id-mng').val() > 50 || $('#user-id-mng').val() < 1) {
+      return false;
+  } else {
+      return true;
+  }
+}
+
+let managerPostValidation = (date) => {
+  if (validateDates(date) && validateNewBooking(date, $('#room-num-mng').val()) && checkFields()) {
+    return true;
+  } else {
+    return false;
+  }
 }
