@@ -86,7 +86,7 @@ let startGame = (name) => {
     displayManagerStats();
     $('#manager-page').show();
   } else {
-      customer = new Customer(bookingData, name);
+      customer = new Customer(bookingData, name, userData);
       displayCustomerStats();
       $('#customer-page').show();
     }
@@ -296,7 +296,7 @@ $('#find-customer').on('click', () => {
   let nameQuery = $('#user-search-input').val();
   let user = manager.filterData(nameQuery, 'name', userData)[0];
   if (nameQuery && user) {
-    let bookings = manager.grabUserInfo(user.id).bookings;
+    let bookings = manager.grabUserInfo(userData, user.id, bookingData).bookings;
     $('#customer-name').text(nameQuery);
     $('#customer-id').text(user.id);
     $('#customer-search-spend').text(`$${manager.sumSpent(roomData, bookings)}`);
@@ -344,3 +344,19 @@ $('#manager-delete-booking').on('click', () => {
       $('#booking-delete-error').css('display', 'block');
   }
 });
+
+$('#mng-post-booking').on('click', () => {
+  event.preventDefault();
+  console.log(validateDates());
+});
+
+let validateDates = () => {
+  let bool = true;
+  let enteredDate = `${$('#user-year-mng').val()}/${$('#user-month-mng').val()}/${$('#user-day-mng').val()}`;
+  if (!$('#user-year-mng').val() || !$('#user-month-mng').val() || !$('#user-day-mng').val()) {
+    bool = false;
+  } if (enteredDate < getCurrentDate()) {
+    bool = false;
+  }
+  return bool;
+}

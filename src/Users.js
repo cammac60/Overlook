@@ -1,7 +1,3 @@
-const userData = require('../data/user-data.js');
-const roomData = require('../data/room-data.js');
-const bookingData = require('../data/booking-data.js');
-
 class User {
   constructor(data) {
   }

@@ -1,6 +1,3 @@
-const userData = require('../data/user-data.js');
-const roomData = require('../data/room-data.js');
-const bookingData = require('../data/booking-data.js');
 const User = require('./Users.js');
 
 class Manager extends User {
@@ -8,11 +5,11 @@ class Manager extends User {
     super();
     this.name = 'Stuart Ullman';
   }
-  grabUserInfo(id) {
+  grabUserInfo(users, id, bookings) {
     return {
       'id': id,
-      'name': userData.find(user => user.id === id).name,
-      'bookings': bookingData.filter(booking => booking.userID === id)
+      'name': users.find(user => user.id === id).name,
+      'bookings': bookings.filter(booking => booking.userID === id)
     };
   }
   deleteBooking(bookingID) {
