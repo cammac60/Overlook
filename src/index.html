@@ -59,7 +59,7 @@
         <h2>Customer Search</h2>
         <form id="manager-search">
           <label for="user-search-input">Customer</label>
-          <input autocomplete="false" maxlength="32" name="username" id="user-search-input">
+          <input autocomplete="off" maxlength="32" name="username" id="user-search-input" required="true">
           <span id="customer-search-error">We couldn't find a customer by that name - Please try again.</span>
           <button type="submit" value="search" id="find-customer">Search</button>
         </form>
@@ -86,6 +86,35 @@
         </table>
         <span id="booking-delete-error">Please make sure you have a booking selected</span>
         <button id="manager-delete-booking" type="submit" value="delete-booking" name="delete">Remove Booking</button>
+          <form id="manager-post-form">
+            <h3>Make a Booking</h3>
+            <div>
+              <div>
+                <label class="inline-label" for="user-year-mng">Year</lable>
+                <input id="user-year-mng" type="number" maxlength="4" required="true">
+              </div>
+              <div>
+                  <label class="inline-label" for="user-month-mng">Month</lable>
+                  <input class="small-input" id="user-month-mng" type="number" maxlength="2" required="true">
+              </div>
+              <div>
+                  <label class="inline-label" for="user-day-mng">Day</lable>
+                  <input class="small-input" id="user-day-mng" type="number" maxlength="2" required="true">
+              </div>
+            </div>
+            <hr>
+            <div>
+              <div>
+                  <label for="room-num-mng">Room #</label>
+                  <input class="small-input" id="room-num-mng" type="number" required="true" maxlength="2" max="50" min="1">
+              </div>
+              <div>
+                  <label for="user-id-mng">User ID</label>
+                  <input class="small-input" id="user-id-mng" type="number" name="user id" maxlength="2" required="true">
+              </div>
+            </div>
+            <button type="submit" id="mng-post-booking">Submit</button>
+          </form>
       </section>
     </main>
     <main id="customer-page">

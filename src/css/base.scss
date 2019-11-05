@@ -303,6 +303,56 @@ body {
       outline: none;
     }
   }
+  #manager-post-form {
+    background-color: $primary-background;
+    border: 2px solid $primary-accent;
+    border-radius: 2px;
+    color: $primary-text;
+    margin-top: 5%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    text-align: center;
+    width: 60%;
+    h3 {
+      font-size: 2.5rem;
+      margin: 0;
+      margin-bottom: 3%;
+    }
+    div {
+      display: flex;
+      height: 50%;
+      justify-content: space-around;
+      margin-bottom: 2%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+      width: 50%;
+      div {
+        width: 33%;
+        #user-year-mng {
+          width: 70%;
+        }
+        .small-input {
+          width: 35%;
+        }
+        label {
+          margin: 0;
+        }
+        #mng-post-booking {
+          width: 40%;
+        }
+      }
+    }
+  }
+  button {
+    font-size: 1.2rem;
+    width: 20%;
+  }
 }
 
 #customer-page {
