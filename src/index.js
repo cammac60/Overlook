@@ -348,10 +348,8 @@ $('#manager-delete-booking').on('click', () => {
 $('#mng-post-booking').on('click', () => {
   event.preventDefault();
   let enteredDate = `${$('#user-year-mng').val()}/${$('#user-month-mng').val()}/${$('#user-day-mng').val()}`;
-  if (managerPostValidation()) {
-    console.log('posting');
-  } else {
-      console.log('error');
+  if (managerPostValidation(enteredDate)) {
+    manager.postBooking($('#user-id-mng').val(), enteredDate, $('#room-num-mng').val());
   }
 });
 
@@ -371,6 +369,7 @@ let validateNewBooking = (date) => {
   if (bookings.some(booking => {
     return booking.date === date && booking.roomNumber === parseInt(roomNum);
   })) {
+    $('#mng-post-invalid-booking').css('display', 'block');
     return false;
   } else {
     return true;
@@ -379,14 +378,19 @@ let validateNewBooking = (date) => {
 
 let checkFields = () => {
   if ($('#user-year-mng').val() < 2019) {
+    $('#mng-post-invalid-field').css('display', 'block');
     return false;
   } if ($('#user-month-mng').val() > 12 || $('#user-month-mng').val() < 1) {
+      $('#mng-post-invalid-field').css('display', 'block');
       return false;
   } if ($('#user-day-mng').val() > 31) {
+      $('#mng-post-invalid-field').css('display', 'block');
       return false;
   } if ($('#room-num-mng').val() > 25 || $('#room-num-mng').val() < 1 ) {
+      $('#mng-post-invalid-field').css('display', 'block');
       return false;
   } if ($('#user-id-mng').val() > 50 || $('#user-id-mng').val() < 1) {
+      $('#mng-post-invalid-field').css('display', 'block');
       return false;
   } else {
       return true;
@@ -394,9 +398,14 @@ let checkFields = () => {
 }
 
 let managerPostValidation = (date) => {
-  if (validateDates(date) && validateNewBooking(date, $('#room-num-mng').val()) && checkFields()) {
+  if (checkFields() && validateNewBooking(date) && validateDates(date)) {
     return true;
   } else {
     return false;
   }
 }
+
+$('#manager-post-form').on('keyup', () => {
+  $('#mng-post-invalid-field').hide();
+  $('#mng-post-invalid-booking').hide();
+});

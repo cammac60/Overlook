@@ -19,8 +19,9 @@ class User {
     return rooms.filter(room =>
       !bookedRooms.includes(room.number));
   }
-  postBooking(userID, date, room) {
+  postBooking(id, date, room) {
     let roomNum = parseInt(room);
+    let userID = parseInt(id);
     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
       method: 'POST',
       headers: {

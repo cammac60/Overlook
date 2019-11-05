@@ -350,6 +350,9 @@ body {
         }
       }
     }
+    #mng-post-invalid-field, #mng-post-invalid-booking {
+      display: none;
+    }
   }
   button {
     font-size: 1.2rem;
