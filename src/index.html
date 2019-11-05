@@ -11,9 +11,9 @@
           <h6>Please sign in to continue:</h6>
           <form id="splash-form">
             <label for="username">Enter your username</label>
-            <input required="true" class= "splash-input" id="username" type="text" maxlength="32">
+            <input autocomplete="off" required="true" class= "splash-input" id="username" type="text" maxlength="32">
             <label for="password">Enter your password</label>
-            <input required="true" class= "splash-input" id="password" type="password" maxlength="32">
+            <input autocomplete="off"required="true" class= "splash-input" id="password" type="password" maxlength="32">
             <button id="splash-submit" type="button" name="submit">Submit</button>
             <p id="splash-form-error"></p>
           </form>
@@ -38,7 +38,7 @@
           <span class="current-date"></span>
         </detail>
       </header>
-      <section class="manager-container">
+      <section id="top-container" class="manager-container">
         <h2>Daily Breakdown</h2>
         <div>
           <section class="data-container">
@@ -57,10 +57,66 @@
       </section>
       <section class="manager-container">
         <h2>Customer Search</h2>
-        <form id="magager-search">
+        <form id="manager-search">
           <label for="user-search-input">Customer</label>
-          <input maxlength="32" name="username" id="user-search-input">
+          <input autocomplete="off" maxlength="32" name="username" id="user-search-input" required="true">
+          <span id="customer-search-error">We couldn't find a customer by that name - Please try again.</span>
+          <button type="submit" value="search" id="find-customer">Search</button>
         </form>
+        <div id="customer-info-wrapper">
+          <span class="custo-info">
+            <strong>Name:</strong> <span id="customer-name"></span>
+          </span>
+          <br>
+          <span class="custo-info">
+            <storng>ID:</strong> <span id="customer-id"></span>
+          </span>
+          <br>
+          <span class="custo-info">
+            <strong>All Time Spend: </strong><span id="customer-search-spend"></span>
+          </span>
+        </div>
+        <table id="manager-booking-table">
+          <tr>
+            <th>Date</th>
+            <th>Room #</th>
+            <th>Booking ID</th>
+            <th>Select</th>
+          <tr>
+        </table>
+        <span id="booking-delete-error">Please make sure you have a booking selected</span>
+        <button id="manager-delete-booking" type="submit" value="delete-booking" name="delete">Remove Booking</button>
+          <form id="manager-post-form">
+            <h3>Make a Booking</h3>
+            <div>
+              <div>
+                <label class="inline-label" for="user-year-mng">Year</lable>
+                <input id="user-year-mng" type="number" maxlength="4" required="true">
+              </div>
+              <div>
+                  <label class="inline-label" for="user-month-mng">Month</lable>
+                  <input class="small-input" id="user-month-mng" type="number" maxlength="2" required="true">
+              </div>
+              <div>
+                  <label class="inline-label" for="user-day-mng">Day</lable>
+                  <input class="small-input" id="user-day-mng" type="number" maxlength="2" required="true">
+              </div>
+            </div>
+            <hr>
+            <div>
+              <div>
+                  <label for="room-num-mng">Room #</label>
+                  <input class="small-input" id="room-num-mng" type="number" required="true" maxlength="2" max="50" min="1">
+              </div>
+              <div>
+                  <label for="user-id-mng">User ID</label>
+                  <input class="small-input" id="user-id-mng" type="number" name="user id" maxlength="2" required="true">
+              </div>
+            </div>
+            <span id="mng-post-invalid-field">One or more of the selected fields is invalid. Please try again</span>
+            <span id="mng-post-invalid-booking">Unfortunately, this room is already booked on the selected date. Please try a different room and/or date</span>
+            <button type="submit" id="mng-post-booking">Submit</button>
+          </form>
       </section>
     </main>
     <main id="customer-page">
@@ -154,6 +210,7 @@
                 <th>Select Room</th>
               </tr>
             <table>
+            <span id="booking-fail">You haven't selected a room.</span>
             <button id="book-room" type="submit">Make Booking</button>
           </section>
         </div>

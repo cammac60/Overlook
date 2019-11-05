@@ -86,7 +86,7 @@ let startGame = (name) => {
     displayManagerStats();
     $('#manager-page').show();
   } else {
-      customer = new Customer(bookingData, name);
+      customer = new Customer(bookingData, name, userData);
       displayCustomerStats();
       $('#customer-page').show();
     }
@@ -112,7 +112,7 @@ let displayTotalVacancy = () => {
   let bookingsToday = bookingData.filter(booking => {
     return booking.date === getCurrentDate();
   }).length;
-  let openRooms = 25 - bookingsToday;
+  let openRooms = roomData.length - bookingsToday;
   $('#open-rooms').text(`${openRooms}`);
   return openRooms;
 }
@@ -136,7 +136,8 @@ let displayCustomerStats = () => {
 }
 
 let displayCustomerSpend = () => {
-  let amount = customer.sumSpent(roomData, customer.data);
+  let pastBookings = customer.data.filter(data => data.date < getCurrentDate());
+  let amount = customer.sumSpent(roomData, pastBookings);
   $('#amount-spent').text(`$${amount}`);
 }
 
@@ -275,11 +276,136 @@ let filterByRoomType = (rooms) => {
 $('#book-room').on('click', () => {
   event.preventDefault();
     let selector = $('input[name=select]:checked');
-    let roomInfo =  selector[0].parentNode.parentNode.childNodes;
-    customer.postBooking(customer.id, selectedDate, roomInfo[1].innerText);
-    resetRoomTable();
-    $('#room-search-year').val('');
-    $('#room-search-month').val('');
-    $('#room-search-day').val('');
-    $('#booking-success').show();
+    if (selector.length) {
+      let roomInfo =  selector[0].parentNode.parentNode.childNodes;
+      customer.postBooking(customer.id, selectedDate, roomInfo[1].innerText);
+      resetRoomTable();
+      $('#room-search-year').val('');
+      $('#room-search-month').val('');
+      $('#room-search-day').val('');
+      $('#booking-fail').hide();
+      $('#booking-success').show();
+    } else {
+        $('#booking-fail').css('display', 'block');
+    }
+});
+
+$('#find-customer').on('click', () => {
+  event.preventDefault();
+  resetManagerBookings();
+  let nameQuery = $('#user-search-input').val();
+  let user = manager.filterData(nameQuery, 'name', userData)[0];
+  if (nameQuery && user) {
+    let bookings = manager.grabUserInfo(userData, user.id, bookingData).bookings;
+    $('#customer-name').text(nameQuery);
+    $('#customer-id').text(user.id);
+    $('#customer-search-spend').text(`$${manager.sumSpent(roomData, bookings)}`);
+    updateManagerBookings(bookings);
+  } else {
+    $('#user-search-input').css('border', '2px solid red');
+    $('#customer-search-error').show();
+  }
+});
+
+$('#user-search-input').on('keyup', () => {
+  $('#user-search-input').css('border', 'none');
+  $('#customer-search-error').hide();
+})
+
+let updateManagerBookings = (bookings) => {
+  bookings.forEach(booking => {
+    $('#manager-booking-table').append(`<tr>
+      <td>${booking.date}</td>
+      <td>${booking.roomNumber}</td>
+      <td>${booking.id}</td>
+      <td><input class="select-booking" type="radio" value="select booking" name="booking-select"></td>
+    <tr>`);
+  });
+}
+
+let resetManagerBookings = () => {
+  $('#manager-booking-table').html(`<tr>
+    <th>Date</th>
+    <th>Room #</th>
+    <th class="booking-id">Booking ID</th>
+    <th>Select</th>
+  <tr>`);
+}
+
+$('#manager-delete-booking').on('click', () => {
+  event.preventDefault();
+  let selector = $('input[name=booking-select]:checked');
+  if (selector.length) {
+    $('#booking-delete-error').hide();
+    let bookingID = selector[0].parentNode.parentNode.children[2].innerText;
+    manager.deleteBooking(bookingID);
+    selector[0].parentNode.parentNode.remove();
+  } else {
+      $('#booking-delete-error').css('display', 'block');
+  }
+});
+
+$('#mng-post-booking').on('click', () => {
+  event.preventDefault();
+  let enteredDate = `${$('#user-year-mng').val()}/${$('#user-month-mng').val()}/${$('#user-day-mng').val()}`;
+  if (managerPostValidation(enteredDate)) {
+    manager.postBooking($('#user-id-mng').val(), enteredDate, $('#room-num-mng').val());
+  }
+});
+
+let validateDates = (date) => {
+  let bool = true;
+  if (!$('#user-year-mng').val() || !$('#user-month-mng').val() || !$('#user-day-mng').val()) {
+    bool = false;
+  } if (date < getCurrentDate()) {
+    bool = false;
+  }
+  return bool;
+}
+
+let validateNewBooking = (date) => {
+  let bookings = manager.filterData(date, 'date', bookingData);
+  let roomNum = $('#room-num-mng').val();
+  if (bookings.some(booking => {
+    return booking.date === date && booking.roomNumber === parseInt(roomNum);
+  })) {
+    $('#mng-post-invalid-booking').css('display', 'block');
+    return false;
+  } else {
+    return true;
+  }
+}
+
+let checkFields = () => {
+  if ($('#user-year-mng').val() < 2019) {
+    $('#mng-post-invalid-field').css('display', 'block');
+    return false;
+  } if ($('#user-month-mng').val() > 12 || $('#user-month-mng').val() < 1) {
+      $('#mng-post-invalid-field').css('display', 'block');
+      return false;
+  } if ($('#user-day-mng').val() > 31) {
+      $('#mng-post-invalid-field').css('display', 'block');
+      return false;
+  } if ($('#room-num-mng').val() > 25 || $('#room-num-mng').val() < 1 ) {
+      $('#mng-post-invalid-field').css('display', 'block');
+      return false;
+  } if ($('#user-id-mng').val() > 50 || $('#user-id-mng').val() < 1) {
+      $('#mng-post-invalid-field').css('display', 'block');
+      return false;
+  } else {
+      return true;
+  }
+}
+
+let managerPostValidation = (date) => {
+  if (checkFields() && validateNewBooking(date) && validateDates(date)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+$('#manager-post-form').on('keyup', () => {
+  $('#mng-post-invalid-field').hide();
+  $('#mng-post-invalid-booking').hide();
 });

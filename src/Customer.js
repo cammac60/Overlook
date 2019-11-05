@@ -1,27 +1,21 @@
-const userData = require('../data/user-data.js');
-const roomData = require('../data/room-data.js');
-const bookingData = require('../data/booking-data.js');
 const User = require('./Users.js');
 
 class Customer extends User {
-  constructor(data, name) {
+  constructor(bookings, name, users) {
     super();
-    this.id = this.fetchID(name);
-    this.name = this.grabName().name;
-    this.data = this.grabBookings(data, this.id);
+    this.id = this.fetchID(name, users);
+    this.name = this.grabName(users).name;
+    this.data = this.grabBookings(bookings);
   }
-  grabName() {
-    return userData.find(user => user.id === this.id);
-  }
-  filterData(value, key, data) {
-    return data.filter(dataEntry => dataEntry[key] === value);
+  grabName(users) {
+    return users.find(user => user.id === this.id);
   }
   grabBookings(data) {
     return data.filter(booking => booking.userID === this.id);
   }
-  fetchID(name) {
+  fetchID(name, users) {
     let id;
-    userData.forEach(user => {
+    users.forEach(user => {
       if (name === `customer${user.id}`) {
         id = user.id;
       }
