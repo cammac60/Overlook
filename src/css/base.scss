@@ -1,4 +1,3 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
 @import 'variables';
 
 body {
@@ -21,6 +20,10 @@ button {
   &:focus {
     outline: none;
   }
+}
+
+#sign-in, .manager-container, #customer-info-wrapper, #manager-post-form, .customer-container-2 {
+  border: 2px solid $primary-accent;
 }
 
 #splash-page {
@@ -49,7 +52,6 @@ button {
    }
     #sign-in {
       background-color: $secondary-background-opaque;
-      border: 2px solid $primary-accent;
       border-radius: 2px;
       margin-left: auto;
       margin-right: auto;
@@ -227,7 +229,6 @@ button {
   }
   .manager-container {
     background-color: $secondary-background-opaque;
-    border: 2px solid $primary-accent;
     font-family: $main-font;
     margin-left: auto;
     margin-right: auto;
@@ -366,7 +367,6 @@ button {
   }
   #customer-info-wrapper {
     background-color: $primary-background;
-    border: 2px solid $primary-accent;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -403,7 +403,6 @@ button {
   }
   #manager-post-form {
     background-color: $primary-background;
-    border: 2px solid $primary-accent;
     border-radius: 2px;
     margin-top: 5%;
     margin-bottom: 20px;
@@ -521,7 +520,6 @@ button {
   }
   .customer-container-2 {
     background-color: rgba(0, 0, 0, 0.5);
-    border: 2px solid $primary-accent;
     font-family: $main-font;
     margin-left: auto;
     margin-right: auto;
