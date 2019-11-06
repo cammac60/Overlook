@@ -350,8 +350,18 @@ $('#mng-post-booking').on('click', () => {
   let enteredDate = `${$('#user-year-mng').val()}/${$('#user-month-mng').val()}/${$('#user-day-mng').val()}`;
   if (managerPostValidation(enteredDate)) {
     manager.postBooking($('#user-id-mng').val(), enteredDate, $('#room-num-mng').val());
+    clearMngBooking();
   }
 });
+
+let clearMngBooking = () => {
+  $('#user-year-mng').val('');
+  $('#user-month-mng').val('');
+  $('#user-day-mng').val('');
+  $('#room-num-mng').val('');
+  $('#user-id-mng').val('');
+  $('#mng-post-success').css('display', 'block').delay(3000).hide(0);
+}
 
 let validateDates = (date) => {
   let bool = true;
