@@ -21,7 +21,16 @@ body {
       margin: 0;
       padding-top: 5%;
       width: 100%;
-    }
+      @media only screen and (max-width: 700px) {
+		    font-size: 4rem;
+	    }
+      @media only screen and (max-width: 550px) {
+        font-size: 3rem;
+      }
+      @media only screen and (max-width: 410px) {
+        font-size: 2.5rem;
+      }
+   }
 
     #sign-in {
       background-color: $secondary-background-opaque;
@@ -38,6 +47,12 @@ body {
         font-size: 1.4rem;
         margin-bottom: 3%;
         margin-top: 3%;
+        @media only screen and (max-width: 760px) {
+  		    font-size: 1rem;
+    	  }
+        @media only screen and (max-width: 550px) {
+   		     font-size: 0.6rem;
+   	    }
       }
       form {
         font-family: $main-font;
@@ -53,10 +68,29 @@ body {
           margin-top: 1%;
           padding: 5px;
           width: 100%;
+          @media only screen and (max-width: 860px) {
+     		     font-size: 0.8rem;
+     	    }
+          @media only screen and (max-width: 685px) {
+     		     font-size: 0.5rem;
+             height: 5%;
+     	    }
+          @media only screen and (max-width: 500px) {
+     		     font-size: 0.3rem;
+     	    }
         }
         label {
           display: block;
           text-align: left;
+          @media only screen and (max-width: 860px) {
+     		     font-size: 0.8rem;
+     	    }
+          @media only screen and (max-width: 685px) {
+     		     font-size: 0.5rem;
+     	    }
+          @media only screen and (max-width: 500px) {
+     		     font-size: 0.3rem;
+     	    }
         }
         button {
           background-color: $secondary-accent;
@@ -76,6 +110,18 @@ body {
           &:focus {
             outline: none;
           }
+          @media only screen and (max-width: 860px) {
+     		     font-size: 0.8rem;
+     	    }
+          @media only screen and (max-width: 685px) {
+     		     font-size: 0.4rem;
+     	    }
+          @media only screen and (max-width: 500px) {
+     		     font-size: 0.2rem;
+     	    }
+          @media only screen and (max-width: 400px) {
+     		     font-size: 0.1rem;
+     	    }
         }
         p {
           color: $error-color;
@@ -102,10 +148,19 @@ body {
         justify-content: space-between;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 3%;
+        margin-top: 1.5%;
         width: 30%;
         img {
           height: 50px;
+          @media only screen and (max-width: 820px) {
+    		    height: 40px;
+    	    }
+          @media only screen and (max-width: 690px) {
+    		    height: 30px;
+    	    }
+          @media only screen and (max-width: 505px) {
+    		    height: 20px;
+    	    }
         }
       }
     }
@@ -207,7 +262,6 @@ body {
         height: 30px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 5%;
         &:active {
           background-color: $primary-accent;
           border: 2px solid $secondary-accent;
@@ -294,7 +348,6 @@ body {
     height: 30px;
     margin-left: 40%;
     margin-right: 40%;
-    margin-top: 5%;
     width: 20%;
     &:active {
       background-color: $primary-accent;
