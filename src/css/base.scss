@@ -197,12 +197,18 @@ body {
       padding-left: 20px;
       padding-top: 10px;
       margin: 0;
+      @media only screen and (max-width: 450px) {
+        font-size: 2rem;
+      }
     }
     detail {
       font-family: $main-font;
       font-size: 1.4rem;
       padding-right: 30px;
       padding-top: 10px;
+      @media only screen and (max-width: 500px) {
+        font-size: 1rem;
+      }
       span {
         display: block;
       }
@@ -210,6 +216,15 @@ body {
   }
   #top-container {
     margin-top: 13%;
+    @media only screen and (max-width: 900px) {
+      margin-top: 20%;
+    }
+    @media only screen and (max-width: 600px) {
+      margin-top: 30%;
+    }
+    @media only screen and (max-width: 400px) {
+      margin-top: 40%;
+    }
   }
   .manager-container {
     background-color: $secondary-background-opaque;
@@ -227,6 +242,12 @@ body {
       padding: 10px;
       padding-left: 20px;
       width: 100%;
+      @media only screen and (max-width: 800px) {
+        font-size: 1.8rem;
+      }
+      @media only screen and (max-width: 600px) {
+        font-size: 1.4rem;
+      }
     }
     form {
       background-color: $primary-background;
@@ -255,6 +276,10 @@ body {
         margin-left: auto;
         margin-right: auto;
         width: 80%;
+        @media only screen and (max-width: 670px) {
+          font-size: 0.6rem;
+          height: 15px;
+        }
       }
       #find-customer {
         width: 80%;
@@ -268,6 +293,9 @@ body {
         height: 30px;
         margin-left: auto;
         margin-right: auto;
+        @media only screen and (max-width: 670px) {
+          font-size: 0.6rem;
+        }
         &:active {
           background-color: $primary-accent;
           border: 2px solid $secondary-accent;
@@ -293,10 +321,28 @@ body {
           font-size: 3rem;
           margin-bottom: 5%;
           margin-top: 0;
+          @media only screen and (max-width: 860px) {
+            font-size: 2.4rem;
+          }
+          @media only screen and (max-width: 670px) {
+            font-size: 1.8rem;
+          }
+          @media only screen and (max-width: 510px) {
+            font-size: 1.2rem;
+          }
         }
         label {
           font-size: 1.8rem;
           text-decoration: underline;
+          @media only screen and (max-width: 860px) {
+            font-size: 1.2rem;
+          }
+          @media only screen and (max-width: 670px) {
+            font-size: 0.6rem;
+          }
+          @media only screen and (max-width: 510px) {
+            font-size: 0.2rem;
+          }
         }
       }
     }
@@ -310,6 +356,13 @@ body {
       margin-top: 5%;
       text-align: center;
       width: 75%;
+      @media only screen and (max-width: 675px) {
+        font-size: 1rem;
+        width: 50%;
+      }
+      @media only screen and (max-width: 575px) {
+        font-size: 0.7rem;
+      }
       tr {
         &:hover {
           background-color: $primary-background;
@@ -336,6 +389,12 @@ body {
     width: 70%;
     .custo-info {
       font-size: 1.4rem;
+      @media only screen and (max-width: 670px) {
+        font-size: 1rem;
+      }
+      @media only screen and (max-width: 450px) {
+        font-size: 0.6rem;
+      }
     }
   }
   #booking-delete-error {
@@ -355,6 +414,12 @@ body {
     margin-left: 40%;
     margin-right: 40%;
     width: 20%;
+    @media only screen and (max-width: 1000px) {
+      font-size: 0.7rem;
+    }
+    @media only screen and (max-width: 600px) {
+      font-size: 0.5rem;
+    }
     &:active {
       background-color: $primary-accent;
       border: 2px solid $secondary-accent;
@@ -383,29 +448,42 @@ body {
       font-size: 2.5rem;
       margin: 0;
       margin-bottom: 3%;
+      @media only screen and (max-width: 800px) {
+        font-size: 2rem;
+      }
+      @media only screen and (max-width: 600px) {
+        font-size: 1.8rem;
+      }
+      @media only screen and (max-width: 450px) {
+        font-size: 1.5rem;
+      }
     }
     div {
       display: flex;
-      height: 50%;
       justify-content: space-around;
       margin-bottom: 2%;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 5%;
+      margin-top: 3%;
       width: 50%;
       div {
+        display: flex;
+        flex-direction: column;
         width: 33%;
         #user-year-mng {
-          width: 70%;
+          width: 80%;
         }
         .small-input {
-          width: 35%;
+          width: 40%;
         }
         label {
           margin: 0;
-        }
-        #mng-post-booking {
-          width: 40%;
+          @media only screen and (max-width: 700px) {
+            font-size: 0.8rem;
+          }
+          @media only screen and (max-width: 500px) {
+            font-size: 0.5rem;
+          }
         }
       }
     }
@@ -414,8 +492,10 @@ body {
     }
   }
   button {
-    font-size: 1.2rem;
     width: 20%;
+  }
+  #wide-wrap {
+    width: 70%;
   }
 }
 
