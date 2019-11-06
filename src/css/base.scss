@@ -524,12 +524,24 @@ body {
       padding-left: 20px;
       padding-top: 10px;
       margin: 0;
+      @media only screen and (max-width: 450px) {
+        font-size: 2rem;
+      }
+      @media only screen and (max-width: 350px) {
+        font-size: 1.6rem;
+      }
     }
     detail {
       font-family: $main-font;
       font-size: 1.4rem;
       padding-right: 30px;
       padding-top: 10px;
+      @media only screen and (max-width: 575px) {
+        font-size: 1rem;
+      }
+      @media only screen and (max-width: 350px) {
+        font-size: 0.8rem;
+      }
       span {
         display: block;
       }
@@ -544,12 +556,24 @@ body {
     margin-right: auto;
     margin-top: 15%;
     width: 80%;
+    @media only screen and (max-width: 700px) {
+      margin-top: 25%;
+    }
+    @media only screen and (max-width: 550px) {
+      margin-top: 35%;
+    }
     h2 {
       font-size: 2.2rem;
       margin: 0;
       padding: 10px;
       padding-left: 20px;
       width: 100%;
+      @media only screen and (max-width: 550px) {
+        font-size: 1.8rem;
+      }
+      @media only screen and (max-width: 400px) {
+        font-size: 1.5rem;
+      }
     }
     div {
       #spend-container {
@@ -593,6 +617,21 @@ body {
           margin-top: 5%;
           outline: none;
           width: 20%;
+          @media only screen and (max-width: 1050px) {
+            font-size: 1rem;
+          }
+          @media only screen and (max-width: 870px) {
+            font-size: 0.8rem;
+          }
+          @media only screen and (max-width: 700px) {
+            font-size: 0.5rem;
+          }
+          @media only screen and (max-width: 550px) {
+            font-size: 0.3rem;
+          }
+          @media only screen and (max-width: 400px) {
+            font-size: 0.1rem;
+          }
         }
         #booking-error {
           display: none;
@@ -607,6 +646,21 @@ body {
           margin-right: auto;
           margin-top: 5%;
           width: 75%;
+          @media only screen and (max-width: 1000px) {
+            font-size: 1rem;
+          }
+          @media only screen and (max-width: 800px) {
+            font-size: 0.7rem;
+            width: 60%;
+          }
+          @media only screen and (max-width: 500px) {
+            font-size: 0.4rem;
+            width: 50%;
+          }
+          @media only screen and (max-width: 350px) {
+            font-size: 0.2rem;
+            width: 40%;
+          }
           tr {
             &:hover {
               background-color: $primary-background;
@@ -629,6 +683,9 @@ body {
     margin-top: 5%;
     h3 {
       font-size: 2rem;
+      @media only screen and (max-width: 600px) {
+        font-size: 1.4rem;
+      }
     }
     #input-wrapper-lrg {
       display: flex;
@@ -642,6 +699,9 @@ body {
       label {
         font-size: 1rem;
         text-decoration: none;
+        @media only screen and (max-width: 600px) {
+          font-size: 0.7rem;
+        }
       }
       #room-search-year {
         font-size: 1.2rem;
@@ -661,6 +721,12 @@ body {
       height: 30px;
       margin-bottom: 5%;
       width: 20%;
+      @media only screen and (max-width: 800px) {
+        font-size: 0.7rem;
+      }
+      @media only screen and (max-width: 650px) {
+        font-size: 0.5rem;
+      }
       &:active {
         background-color: $primary-accent;
         border: 2px solid $secondary-accent;
