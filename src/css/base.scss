@@ -3,6 +3,7 @@
 
 body {
   background-color: $primary-background;
+  color: $primary-text;
   margin: 0;
 }
 
@@ -31,7 +32,6 @@ button {
     height: 850px;
     position: relative;
     h1 {
-      color: $primary-text;
       font-family: $brand-font;
       font-size: 5rem;
       margin: 0;
@@ -51,7 +51,6 @@ button {
       background-color: $secondary-background-opaque;
       border: 2px solid $primary-accent;
       border-radius: 2px;
-      color: $primary-text;
       margin-left: auto;
       margin-right: auto;
       margin-top: 5%;
@@ -141,7 +140,6 @@ button {
 
   footer {
     background-color: $secondary-background-opaque;
-    color: $primary-text;
     font-family: $main-font;
     font-size: 1.2rem;
     height: 150px;
@@ -184,7 +182,6 @@ button {
   height: 100vh;
   overflow-x: scroll;
   #manager-page-header {
-    color: $primary-text;
     background-color: $secondary-accent;
     border-bottom: 4px solid $primary-accent;
     display: flex;
@@ -231,7 +228,6 @@ button {
   .manager-container {
     background-color: $secondary-background-opaque;
     border: 2px solid $primary-accent;
-    color: $primary-text;
     font-family: $main-font;
     margin-left: auto;
     margin-right: auto;
@@ -255,7 +251,6 @@ button {
       background-color: $primary-background;
       border: 2px solid $primary-accent;
       border-radius: 2px;
-      color: $primary-text;
       margin-bottom: 20px;
       margin-left: auto;
       margin-right: auto;
@@ -410,7 +405,6 @@ button {
     background-color: $primary-background;
     border: 2px solid $primary-accent;
     border-radius: 2px;
-    color: $primary-text;
     margin-top: 5%;
     margin-bottom: 20px;
     margin-left: auto;
@@ -487,7 +481,6 @@ button {
   height: 100vh;
   overflow-x: scroll;
   #customer-page-header {
-    color: $primary-text;
     background-color: $primary-background;
     border-bottom: 4px solid $primary-accent;
     display: flex;
@@ -529,7 +522,6 @@ button {
   .customer-container-2 {
     background-color: rgba(0, 0, 0, 0.5);
     border: 2px solid $primary-accent;
-    color: $primary-text;
     font-family: $main-font;
     margin-left: auto;
     margin-right: auto;
