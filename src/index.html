@@ -86,38 +86,39 @@
         </table>
         <span id="booking-delete-error">Please make sure you have a booking selected</span>
         <button id="manager-delete-booking" type="submit" value="delete-booking" name="delete">Remove Booking</button>
-          <form id="manager-post-form">
-            <h3>Make a Booking</h3>
+        <hr>
+        <form id="manager-post-form">
+          <h3>Make a Booking</h3>
+          <div>
             <div>
-              <div>
-                <label class="inline-label" for="user-year-mng">Year</label>
-                <input id="user-year-mng" type="number" maxlength="4" required="true">
-              </div>
-              <div>
-                  <label class="inline-label" for="user-month-mng">Month</label>
-                  <input class="small-input" id="user-month-mng" type="number" maxlength="2" required="true">
-              </div>
-              <div>
-                  <label class="inline-label" for="user-day-mng">Day</label>
-                  <input class="small-input" id="user-day-mng" type="number" maxlength="2" required="true">
-              </div>
+              <label class="inline-label" for="user-year-mng">Year</label>
+              <input id="user-year-mng" type="number" maxlength="4" required="true">
             </div>
-            <hr>
             <div>
-              <div>
-                  <label for="room-num-mng">Room #</label>
-                  <input class="small-input" id="room-num-mng" type="number" required="true" maxlength="2" max="50" min="1">
-              </div>
-              <div>
-                  <label for="user-id-mng">User ID</label>
-                  <input class="small-input" id="user-id-mng" type="number" name="user id" maxlength="2" required="true">
-              </div>
+              <label class="inline-label" for="user-month-mng">Month</label>
+              <input class="small-input" id="user-month-mng" type="number" maxlength="2" required="true">
             </div>
-            <span id="mng-post-success">Booking successful!</span>
-            <span id="mng-post-invalid-field">One or more of the selected fields is invalid. Please try again</span>
-            <span id="mng-post-invalid-booking">Unfortunately, this room is already booked on the selected date. Please try a different room and/or date</span>
-            <button type="submit" id="mng-post-booking">Submit</button>
-          </form>
+            <div>
+              <label class="inline-label" for="user-day-mng">Day</label>
+              <input class="small-input" id="user-day-mng" type="number" maxlength="2" required="true">
+            </div>
+          </div>
+          <hr>
+          <div>
+            <div>
+              <label for="room-num-mng">Room #</label>
+              <input class="small-input" id="room-num-mng" type="number" required="true" maxlength="2" max="50" min="1">
+            </div>
+            <div>
+              <label for="user-id-mng">User ID</label>
+              <input class="small-input" id="user-id-mng" type="number" name="user id" maxlength="2" required="true">
+            </div>
+          </div>
+          <span id="mng-post-success">Booking successful!</span>
+          <span id="mng-post-invalid-field">One or more of the selected fields is invalid. Please try again</span>
+          <span id="mng-post-invalid-booking">Unfortunately, this room is already booked on the selected date. Please try a different room and/or date</span>
+          <button type="submit" id="mng-post-booking">Submit</button>
+        </form>
       </section>
     </main>
     <main id="customer-page">
