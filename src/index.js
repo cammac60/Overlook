@@ -1,10 +1,5 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
 
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './images/facebook.svg';
 import './images/instagram.svg';
@@ -350,8 +345,18 @@ $('#mng-post-booking').on('click', () => {
   let enteredDate = `${$('#user-year-mng').val()}/${$('#user-month-mng').val()}/${$('#user-day-mng').val()}`;
   if (managerPostValidation(enteredDate)) {
     manager.postBooking($('#user-id-mng').val(), enteredDate, $('#room-num-mng').val());
+    clearMngBooking();
   }
 });
+
+let clearMngBooking = () => {
+  $('#user-year-mng').val('');
+  $('#user-month-mng').val('');
+  $('#user-day-mng').val('');
+  $('#room-num-mng').val('');
+  $('#user-id-mng').val('');
+  $('#mng-post-success').css('display', 'block').delay(3000).hide(0);
+}
 
 let validateDates = (date) => {
   let bool = true;

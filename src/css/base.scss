@@ -1,9 +1,30 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
 @import 'variables';
 
 body {
   background-color: $primary-background;
+  color: $primary-text;
+  font-family: $main-font;
   margin: 0;
+}
+
+button {
+  background-color: $secondary-accent;
+  border: 1px solid $primary-accent;
+  color: $primary-text;
+  cursor: pointer;
+  font-size: 1rem;
+  &:active {
+    background-color: $primary-accent;
+    border: 2px solid $secondary-accent;
+    color: black;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+#sign-in, .manager-container, #customer-info-wrapper, #manager-post-form, .customer-container-2 {
+  border: 2px solid $primary-accent;
 }
 
 #splash-page {
@@ -15,7 +36,6 @@ body {
     height: 850px;
     position: relative;
     h1 {
-      color: $primary-text;
       font-family: $brand-font;
       font-size: 5rem;
       margin: 0;
@@ -31,23 +51,19 @@ body {
         font-size: 2.5rem;
       }
    }
-
     #sign-in {
       background-color: $secondary-background-opaque;
-      border: 2px solid $primary-accent;
       border-radius: 2px;
-      color: $primary-text;
-      height: 35%;
       margin-left: auto;
       margin-right: auto;
       margin-top: 5%;
+      padding-bottom: 4%;
       width: 30%;
       @media only screen and (max-width: 700px) {
         margin-top: 20%;
         width: 50%;
       }
       h6 {
-        font-family: $main-font;
         font-size: 1.4rem;
         margin-bottom: 3%;
         margin-top: 5%;
@@ -61,7 +77,6 @@ body {
    	    }
       }
       form {
-        font-family: $main-font;
         height: 80%;
         margin-left: auto;
         margin-right: auto;
@@ -99,23 +114,10 @@ body {
      	    }
         }
         button {
-          background-color: $secondary-accent;
-          border: 1px solid $primary-accent;
-          color: $primary-text;
-          cursor: pointer;
-          font-size: 1rem;
           height: 15%;
           margin-left: 20%;
           margin-right: 20%;
           width: 60%;
-          &:active {
-            background-color: $primary-accent;
-            border: 2px solid $secondary-accent;
-            color: black;
-          }
-          &:focus {
-            outline: none;
-          }
           @media only screen and (max-width: 860px) {
      		     font-size: 0.8rem;
      	    }
@@ -131,7 +133,7 @@ body {
         }
         p {
           color: $error-color;
-          margin: 5px;
+          margin: 8%;
         }
       }
     }
@@ -139,8 +141,6 @@ body {
 
   footer {
     background-color: $secondary-background-opaque;
-    color: $primary-text;
-    font-family: $main-font;
     font-size: 1.2rem;
     height: 150px;
     width: 100%;
@@ -182,7 +182,6 @@ body {
   height: 100vh;
   overflow-x: scroll;
   #manager-page-header {
-    color: $primary-text;
     background-color: $secondary-accent;
     border-bottom: 4px solid $primary-accent;
     display: flex;
@@ -202,7 +201,6 @@ body {
       }
     }
     detail {
-      font-family: $main-font;
       font-size: 1.4rem;
       padding-right: 30px;
       padding-top: 10px;
@@ -228,9 +226,6 @@ body {
   }
   .manager-container {
     background-color: $secondary-background-opaque;
-    border: 2px solid $primary-accent;
-    color: $primary-text;
-    font-family: $main-font;
     margin-left: auto;
     margin-right: auto;
     margin-top: 3%;
@@ -253,7 +248,6 @@ body {
       background-color: $primary-background;
       border: 2px solid $primary-accent;
       border-radius: 2px;
-      color: $primary-text;
       margin-bottom: 20px;
       margin-left: auto;
       margin-right: auto;
@@ -261,6 +255,7 @@ body {
       text-align: center;
       width: 30%;
       #customer-search-error {
+        font-size: 0.8rem;
         display: none;
       }
       label {
@@ -285,24 +280,11 @@ body {
         width: 80%;
       }
       button {
-        background-color: $secondary-accent;
-        border: 1px solid $primary-accent;
-        color: $primary-text;
-        cursor: pointer;
-        font-size: 1rem;
         height: 30px;
         margin-left: auto;
         margin-right: auto;
         @media only screen and (max-width: 670px) {
           font-size: 0.6rem;
-        }
-        &:active {
-          background-color: $primary-accent;
-          border: 2px solid $secondary-accent;
-          color: black;
-        }
-        &:focus {
-          outline: none;
         }
       }
     }
@@ -381,7 +363,6 @@ body {
   }
   #customer-info-wrapper {
     background-color: $primary-background;
-    border: 2px solid $primary-accent;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -405,11 +386,6 @@ body {
     width: 20%;
   }
   button {
-    background-color: $secondary-accent;
-    border: 1px solid $primary-accent;
-    color: $primary-text;
-    cursor: pointer;
-    font-size: 1rem;
     height: 30px;
     margin-left: 40%;
     margin-right: 40%;
@@ -420,20 +396,10 @@ body {
     @media only screen and (max-width: 600px) {
       font-size: 0.5rem;
     }
-    &:active {
-      background-color: $primary-accent;
-      border: 2px solid $secondary-accent;
-      color: black;
-    }
-    &:focus {
-      outline: none;
-    }
   }
   #manager-post-form {
     background-color: $primary-background;
-    border: 2px solid $primary-accent;
     border-radius: 2px;
-    color: $primary-text;
     margin-top: 5%;
     margin-bottom: 20px;
     margin-left: auto;
@@ -487,11 +453,13 @@ body {
         }
       }
     }
-    #mng-post-invalid-field, #mng-post-invalid-booking {
+    #mng-post-invalid-field, #mng-post-invalid-booking, #mng-post-success {
       display: none;
     }
   }
   button {
+    margin-bottom: 5%;
+    margin-top: 5%;
     width: 20%;
   }
   #wide-wrap {
@@ -508,7 +476,6 @@ body {
   height: 100vh;
   overflow-x: scroll;
   #customer-page-header {
-    color: $primary-text;
     background-color: $primary-background;
     border-bottom: 4px solid $primary-accent;
     display: flex;
@@ -532,7 +499,6 @@ body {
       }
     }
     detail {
-      font-family: $main-font;
       font-size: 1.4rem;
       padding-right: 30px;
       padding-top: 10px;
@@ -549,9 +515,6 @@ body {
   }
   .customer-container-2 {
     background-color: rgba(0, 0, 0, 0.5);
-    border: 2px solid $primary-accent;
-    color: $primary-text;
-    font-family: $main-font;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15%;
@@ -608,7 +571,6 @@ body {
           border: 2px solid $secondary-accent;
           cursor: pointer;
           display: block;
-          font-family: $main-font;
           font-size: 1.2rem;
           height: 30px;
           margin-bottom: 5%;
@@ -713,11 +675,6 @@ body {
       }
     }
     button {
-      background-color: $secondary-accent;
-      border: 1px solid $primary-accent;
-      color: $primary-text;
-      cursor: pointer;
-      font-size: 1rem;
       height: 30px;
       margin-bottom: 5%;
       width: 20%;
@@ -726,11 +683,6 @@ body {
       }
       @media only screen and (max-width: 650px) {
         font-size: 0.5rem;
-      }
-      &:active {
-        background-color: $primary-accent;
-        border: 2px solid $secondary-accent;
-        color: black;
       }
     }
   }
