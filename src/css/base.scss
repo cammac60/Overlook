@@ -31,16 +31,15 @@ body {
         font-size: 2.5rem;
       }
    }
-
     #sign-in {
       background-color: $secondary-background-opaque;
       border: 2px solid $primary-accent;
       border-radius: 2px;
       color: $primary-text;
-      height: 35%;
       margin-left: auto;
       margin-right: auto;
       margin-top: 5%;
+      padding-bottom: 4%;
       width: 30%;
       @media only screen and (max-width: 700px) {
         margin-top: 20%;
@@ -131,7 +130,7 @@ body {
         }
         p {
           color: $error-color;
-          margin: 5px;
+          margin: 8%;
         }
       }
     }
@@ -493,6 +492,7 @@ body {
   }
   button {
     margin-bottom: 5%;
+    margin-top: 5%;
     width: 20%;
   }
   #wide-wrap {
